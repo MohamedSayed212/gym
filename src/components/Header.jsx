@@ -8,7 +8,7 @@ import { useApp } from "../context/AppContext";
 import { gymInfo } from "../lib/site-content";
 
 export function Header() {
-  const { content, theme, toggleTheme, toggleLanguage } = useApp();
+  const { content, isArabic, theme, toggleTheme, toggleLanguage } = useApp();
 
   const [open, setOpen] = useState(false);
 
@@ -36,7 +36,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden items-center gap-2 lg:flex">
+          <nav className={`hidden items-center gap-2 lg:flex ${isArabic ? "lg:flex-row-reverse" : ""}`}>
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -50,8 +50,9 @@ export function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden items-center gap-3 lg:flex">
-            <button onClick={toggleLanguage} className="icon-button h-11 px-4">
+            <button onClick={toggleLanguage} className="icon-button h-11 gap-2 px-4 text-sm font-semibold">
               <Languages className="h-4 w-4" />
+              <span>{isArabic ? "EN" : "AR"}</span>
             </button>
 
             <button onClick={toggleTheme} className="icon-button h-11 w-11 p-0">
@@ -139,7 +140,7 @@ export function Header() {
               className="icon-button flex h-11 flex-1 items-center justify-center gap-2"
             >
               <Languages className="h-4 w-4" />
-              <span>Language</span>
+              <span>{isArabic ? "EN" : "AR"}</span>
             </button>
 
             <button

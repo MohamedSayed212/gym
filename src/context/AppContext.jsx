@@ -6,16 +6,14 @@ import { dictionary } from "../lib/site-content";
 const AppContext = createContext(null);
 
 export function AppProvider({ children }) {
-  const [language, setLanguage] = useState("en");
+  const [isArabic, setIsArabic] = useState(false);
   const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
     const savedLanguage = window.localStorage.getItem("gym-language");
     const savedTheme = window.localStorage.getItem("gym-theme");
 
-    if (savedLanguage === "ar" || savedLanguage === "en") {
-      setLanguage(savedLanguage);
-    }
+    setIsArabic(savedLanguage === "ar");
 
     if (savedTheme === "dark" || savedTheme === "light") {
       setTheme(savedTheme);
@@ -26,10 +24,10 @@ export function AppProvider({ children }) {
 
   useEffect(() => {
     const root = document.documentElement;
-    root.lang = language;
-    root.dir = language === "ar" ? "rtl" : "ltr";
-    window.localStorage.setItem("gym-language", language);
-  }, [language]);
+    root.lang = isArabic ? "ar" : "en";
+    root.dir = "ltr";
+    window.localStorage.setItem("gym-language", isArabic ? "ar" : "en");
+  }, [isArabic]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -40,14 +38,14 @@ export function AppProvider({ children }) {
 
   const value = useMemo(
     () => ({
-      language,
+      language: isArabic ? "ar" : "en",
       theme,
-      isArabic: language === "ar",
-      content: dictionary[language],
-      toggleLanguage: () => setLanguage((current) => (current === "en" ? "ar" : "en")),
+      isArabic,
+      content: dictionary[isArabic ? "ar" : "en"],
+      toggleLanguage: () => setIsArabic((current) => !current),
       toggleTheme: () => setTheme((current) => (current === "dark" ? "light" : "dark")),
     }),
-    [language, theme],
+    [isArabic, theme],
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

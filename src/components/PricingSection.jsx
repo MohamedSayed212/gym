@@ -1,14 +1,20 @@
 import { Check, Flame, Ticket } from "lucide-react";
 import { packages } from "../lib/site-content";
+import { motion } from "../lib/motion";
 
 export function PricingSection({ content, language, onBook }) {
   return (
     <section id="pricing" className="section-dark scroll-rise border-t border-fitness-border py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+      >
+        <div className="mx-auto max-w-3xl space-y-4 text-center">
           <p className="section-kicker">{content.pricing.eyebrow}</p>
-          <h2 className="section-title mx-auto mt-4 max-w-3xl">{content.pricing.title}</h2>
-          <p className="section-copy mx-auto mt-5">{content.pricing.description}</p>
+          <h2 className="section-title mx-auto max-w-3xl">{content.pricing.title}</h2>
+          <p className="section-copy mx-auto leading-normal">{content.pricing.description}</p>
         </div>
 
         <div className="mt-14 grid gap-5 lg:grid-cols-3 lg:items-stretch">
@@ -16,7 +22,11 @@ export function PricingSection({ content, language, onBook }) {
             const planContent = plan[language];
 
             return (
-              <article
+              <motion.article
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                whileHover={{ y: -4 }}
                 key={plan.id}
                 className={`premium-card premium-card-hover relative flex h-full flex-col rounded-lg px-6 py-6 sm:px-7 ${
                   plan.featured
@@ -30,12 +40,12 @@ export function PricingSection({ content, language, onBook }) {
                     {content.pricing.popular}
                   </div>
                 ) : null}
-                <div className="flex items-start justify-between gap-4 pt-4">
-                  <div>
+                <div className="flex items-start justify-between gap-4 pt-4 text-left">
+                  <div className="space-y-2">
                     <p className="text-sm font-semibold text-fitness-orange">
                       {planContent.duration}
                     </p>
-                    <h3 className="mt-2 text-[1.75rem] font-extrabold leading-tight text-fitness-text">
+                    <h3 className="text-[1.75rem] font-extrabold leading-normal text-fitness-text">
                       {planContent.name}
                     </h3>
                   </div>
@@ -43,16 +53,16 @@ export function PricingSection({ content, language, onBook }) {
                     <Flame className="h-5 w-5" aria-hidden="true" />
                   </span>
                 </div>
-                <div className="mt-7 text-[2.65rem] font-extrabold leading-none text-fitness-text">
+                <div className="mt-7 text-[2.65rem] font-extrabold leading-none text-left text-fitness-text">
                   {plan.price}
                 </div>
-                <p className="mt-4 text-sm leading-6 text-fitness-muted">
+                <p className="mt-4 text-left text-sm leading-normal text-fitness-muted">
                   {planContent.description}
                 </p>
                 <ul className="mt-6 space-y-2.5">
                   {planContent.perks.map((perk) => (
-                    <li key={perk} className="flex gap-3 text-sm font-medium leading-6 text-fitness-text">
-                      <Check className="mt-1 h-4 w-4 shrink-0 text-fitness-orange" aria-hidden="true" />
+                    <li key={perk} className="flex gap-3 text-left text-sm font-medium leading-normal text-fitness-text">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-fitness-orange" aria-hidden="true" />
                       <span>{perk}</span>
                     </li>
                   ))}
@@ -65,11 +75,11 @@ export function PricingSection({ content, language, onBook }) {
                   <Ticket className="h-5 w-5" aria-hidden="true" />
                   {content.pricing.book}
                 </button>
-              </article>
+              </motion.article>
             );
           })}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

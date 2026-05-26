@@ -11,7 +11,7 @@ import { TestimonialsSection } from "../components/TestimonialsSection";
 import { useApp } from "../context/AppContext";
 
 export default function HomePage() {
-  const { content, language } = useApp();
+  const { content, isArabic, language } = useApp();
   const [selectedPackage, setSelectedPackage] = useState(null);
   const closeModal = useCallback(() => setSelectedPackage(null), []);
 
@@ -20,11 +20,15 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection content={content} />
-        <FeaturesSection content={content} />
-        <PricingSection content={content} language={language} onBook={setSelectedPackage} />
-        <TestimonialsSection content={content} />
+        <FeaturesSection content={content} isArabic={isArabic} />
+        <PricingSection
+          content={content}
+          language={language}
+          onBook={setSelectedPackage}
+        />
+        <TestimonialsSection content={content} isArabic={isArabic} />
       </main>
-      <Footer content={content} />
+      <Footer content={content} isArabic={isArabic} />
       <BookingModal
         selectedPackage={selectedPackage}
         content={content}

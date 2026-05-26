@@ -8,6 +8,7 @@ const ADMIN_PASSWORD = "gym1234";
 
 export function AdminDashboard() {
   const { content, language } = useApp();
+  const isArabic = language === "ar";
   const [password, setPassword] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [leads, setLeads] = useState([]);
@@ -122,7 +123,7 @@ export function AdminDashboard() {
     return (
       <main className="fitness-surface min-h-screen px-4 py-16 sm:px-6 lg:px-8">
         <section className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div>
+          <div className={`text-left ${isArabic ? "lg:order-2" : ""}`}>
             <p className="text-sm font-black uppercase text-fitness-orange">
               {content.admin.title}
             </p>
@@ -136,22 +137,22 @@ export function AdminDashboard() {
 
           <form
             onSubmit={handleLogin}
-            className="premium-card rounded-lg p-6 shadow-premium sm:p-8"
+            className={`premium-card rounded-lg p-6 shadow-premium sm:p-8 ${isArabic ? "lg:order-1" : ""}`}
           >
             <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-fitness-orange/15 text-fitness-orange ring-1 ring-fitness-orange/35">
               <LockKeyhole className="h-6 w-6" aria-hidden="true" />
             </span>
             <label className="mt-6 block">
-              <span className="text-sm font-black uppercase text-fitness-text">{content.admin.passwordLabel}</span>
+              <span className="block text-left text-sm font-black uppercase text-fitness-text">{content.admin.passwordLabel}</span>
               <input
                 type="password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 placeholder={content.admin.passwordPlaceholder}
-                className="mt-2 w-full rounded-lg border border-fitness-border bg-fitness-input px-4 py-4 text-fitness-text outline-none transition placeholder:text-fitness-subtle focus:border-fitness-orange"
+                className="mt-2 w-full rounded-lg border border-fitness-border bg-fitness-input px-4 py-4 text-left text-fitness-text outline-none transition placeholder:text-fitness-subtle focus:border-fitness-orange"
               />
             </label>
-            {message ? <p className="mt-4 text-sm font-bold text-red-300">{message}</p> : null}
+            {message ? <p className="mt-4 text-left text-sm font-bold text-red-300">{message}</p> : null}
             <button
               type="submit"
               className="mt-6 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-lg bg-fitness-orange px-5 py-4 text-base font-black uppercase text-white shadow-orange-glow transition hover:-translate-y-0.5 hover:bg-fitness-orange-hover"
@@ -175,7 +176,7 @@ export function AdminDashboard() {
     <main className="fitness-surface min-h-screen px-4 py-16 sm:px-6 lg:px-8">
       <section className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div>
+          <div className="text-left">
             <p className="text-sm font-black uppercase text-fitness-orange">
               {content.admin.title}
             </p>
@@ -199,7 +200,7 @@ export function AdminDashboard() {
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {metricCards.map((metric) => (
-            <div key={metric.label} className={`rounded-lg border p-6 shadow-premium ${metric.className}`}>
+            <div key={metric.label} className={`rounded-lg border p-6 text-left shadow-premium ${metric.className}`}>
               <p className="text-sm font-black uppercase text-fitness-muted">{metric.label}</p>
               <p className="mt-4 text-5xl font-black">{metric.value}</p>
             </div>
@@ -207,7 +208,7 @@ export function AdminDashboard() {
         </div>
 
         {message ? (
-          <p className="mt-6 rounded-lg border border-red-500/35 bg-red-500/10 p-4 text-sm font-bold text-red-700 dark:text-red-200">
+          <p className="mt-6 rounded-lg border border-red-500/35 bg-red-500/10 p-4 text-left text-sm font-bold text-red-700 dark:text-red-200">
             {message}
           </p>
         ) : null}
