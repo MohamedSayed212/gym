@@ -3,56 +3,56 @@ import { packages } from "../lib/site-content";
 
 export function PricingSection({ content, language, onBook }) {
   return (
-    <section id="pricing" className="bg-[#ebe4d8] py-20 dark:bg-[#181512] sm:py-24">
+    <section id="pricing" className="section-dark scroll-rise border-t border-fitness-border py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-orange-700 dark:text-orange-300">
-            {content.pricing.eyebrow}
-          </p>
-          <h2 className="mt-4 text-4xl font-black leading-tight text-[#171412] dark:text-white sm:text-5xl">
-            {content.pricing.title}
-          </h2>
-          <p className="mt-5 text-lg leading-8 text-[#5b514a] dark:text-stone-300">{content.pricing.description}</p>
+          <p className="section-kicker">{content.pricing.eyebrow}</p>
+          <h2 className="section-title mx-auto mt-4 max-w-3xl">{content.pricing.title}</h2>
+          <p className="section-copy mx-auto mt-5">{content.pricing.description}</p>
         </div>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-14 grid gap-5 lg:grid-cols-3 lg:items-stretch">
           {packages.map((plan) => {
             const planContent = plan[language];
 
             return (
               <article
                 key={plan.id}
-                className={`relative rounded-lg border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-premium dark:bg-white/[0.06] ${
+                className={`premium-card premium-card-hover relative flex h-full flex-col rounded-lg px-6 py-6 sm:px-7 ${
                   plan.featured
-                    ? "border-orange-500 dark:border-orange-400"
-                    : "border-black/10 dark:border-white/10"
+                    ? "border-fitness-orange/70 lg:-translate-y-2"
+                    : ""
                 }`}
               >
+                <div className={`absolute inset-x-0 top-0 h-1 rounded-t-lg bg-gradient-to-r ${plan.accent}`} />
                 {plan.featured ? (
-                  <div className="absolute start-6 top-0 -translate-y-1/2 rounded-lg bg-orange-600 px-3 py-1 text-xs font-black uppercase tracking-[0.12em] text-white">
+                  <div className="absolute end-6 top-5 rounded-full border border-fitness-orange/30 bg-fitness-orange/10 px-3 py-1 text-[0.72rem] font-bold text-fitness-orange">
                     {content.pricing.popular}
                   </div>
                 ) : null}
-                <div className={`mb-6 h-2 rounded-lg bg-gradient-to-r ${plan.accent}`} />
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start justify-between gap-4 pt-4">
                   <div>
-                    <p className="text-sm font-black uppercase tracking-[0.16em] text-orange-700 dark:text-orange-300">
+                    <p className="text-sm font-semibold text-fitness-orange">
                       {planContent.duration}
                     </p>
-                    <h3 className="mt-2 text-2xl font-black text-[#171412] dark:text-white">{planContent.name}</h3>
+                    <h3 className="mt-2 text-[1.75rem] font-extrabold leading-tight text-fitness-text">
+                      {planContent.name}
+                    </h3>
                   </div>
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#171412] text-orange-300 dark:bg-white dark:text-[#171412]">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-fitness-orange/12 text-fitness-orange ring-1 ring-fitness-orange/20">
                     <Flame className="h-5 w-5" aria-hidden="true" />
                   </span>
                 </div>
-                <div className="mt-6 text-4xl font-black text-[#171412] dark:text-white">{plan.price}</div>
-                <p className="mt-4 min-h-16 text-sm leading-6 text-[#5b514a] dark:text-stone-300">
+                <div className="mt-7 text-[2.65rem] font-extrabold leading-none text-fitness-text">
+                  {plan.price}
+                </div>
+                <p className="mt-4 text-sm leading-6 text-fitness-muted">
                   {planContent.description}
                 </p>
-                <ul className="mt-6 space-y-3">
+                <ul className="mt-6 space-y-2.5">
                   {planContent.perks.map((perk) => (
-                    <li key={perk} className="flex gap-3 text-sm font-semibold text-[#332d28] dark:text-stone-200">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-300" aria-hidden="true" />
+                    <li key={perk} className="flex gap-3 text-sm font-medium leading-6 text-fitness-text">
+                      <Check className="mt-1 h-4 w-4 shrink-0 text-fitness-orange" aria-hidden="true" />
                       <span>{perk}</span>
                     </li>
                   ))}
@@ -60,7 +60,7 @@ export function PricingSection({ content, language, onBook }) {
                 <button
                   type="button"
                   onClick={() => onBook(plan)}
-                  className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#171412] px-5 py-4 text-base font-black text-white transition hover:bg-orange-600 dark:bg-white dark:text-[#171412] dark:hover:bg-orange-300"
+                  className="button-primary mt-7 min-h-12 w-full px-5 text-sm font-bold"
                 >
                   <Ticket className="h-5 w-5" aria-hidden="true" />
                   {content.pricing.book}

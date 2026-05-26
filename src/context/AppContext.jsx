@@ -12,7 +12,6 @@ export function AppProvider({ children }) {
   useEffect(() => {
     const savedLanguage = window.localStorage.getItem("gym-language");
     const savedTheme = window.localStorage.getItem("gym-theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
     if (savedLanguage === "ar" || savedLanguage === "en") {
       setLanguage(savedLanguage);
@@ -21,7 +20,7 @@ export function AppProvider({ children }) {
     if (savedTheme === "dark" || savedTheme === "light") {
       setTheme(savedTheme);
     } else {
-      setTheme(prefersDark ? "dark" : "light");
+      setTheme("dark");
     }
   }, []);
 
@@ -35,6 +34,7 @@ export function AppProvider({ children }) {
   useEffect(() => {
     const root = document.documentElement;
     root.classList.toggle("dark", theme === "dark");
+    root.dataset.theme = theme;
     window.localStorage.setItem("gym-theme", theme);
   }, [theme]);
 

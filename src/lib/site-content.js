@@ -16,7 +16,7 @@ export const packages = [
     id: "starter",
     packageType: "1 Month",
     price: "EGP 900",
-    accent: "from-orange-500 to-red-600",
+    accent: "from-[#FF4D00] to-[#b80000]",
     en: {
       name: "Starter",
       duration: "1 Month",
@@ -35,7 +35,7 @@ export const packages = [
     packageType: "3 Months",
     price: "EGP 2,250",
     featured: true,
-    accent: "from-amber-400 to-orange-600",
+    accent: "from-[#ff6a33] via-[#FF4D00] to-[#b80000]",
     en: {
       name: "Performance",
       duration: "3 Months",
@@ -53,7 +53,7 @@ export const packages = [
     id: "elite",
     packageType: "1 Year",
     price: "EGP 7,900",
-    accent: "from-emerald-400 to-cyan-500",
+    accent: "from-[#FF4D00] to-[#ff1f1f]",
     en: {
       name: "Elite",
       duration: "1 Year",

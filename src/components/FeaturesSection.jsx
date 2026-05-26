@@ -12,7 +12,7 @@ export function FeaturesSection({ content }) {
     {
       icon: Clock3,
       label: content.features.hoursLabel,
-      text: content.features.hours.join(" | "),
+      text: content.features.hours,
     },
     {
       icon: UsersRound,
@@ -22,40 +22,47 @@ export function FeaturesSection({ content }) {
   ];
 
   return (
-    <section id="about" className="bg-[#f6f3ed] py-20 dark:bg-[#11100e] sm:py-24">
+    <section
+      id="about"
+      className="section-light scroll-rise border-t border-fitness-border py-24 sm:py-32"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <div>
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-orange-700 dark:text-orange-300">
-              {content.features.eyebrow}
-            </p>
-            <h2 className="mt-4 max-w-2xl text-4xl font-black leading-tight text-[#171412] dark:text-white sm:text-5xl">
-              {content.features.title}
-            </h2>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#5b514a] dark:text-stone-300">
-              {content.features.description}
-            </p>
+        <div className="grid gap-16 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
+          <div className="space-y-10">
+            <div className="max-w-3xl">
+              <p className="section-kicker">{content.features.eyebrow}</p>
+              <h2 className="section-title mt-4 max-w-3xl">{content.features.title}</h2>
+              <p className="section-copy mt-5">{content.features.description}</p>
+            </div>
 
-            <div className="mt-8 grid gap-4">
-              {details.map((item) => (
+            <div className="grid gap-4 sm:grid-cols-2">
+              {details.map((item, index) => (
                 <div
                   key={item.label}
-                  className="flex gap-4 rounded-lg border border-black/10 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/[0.06]"
+                  className={`premium-card premium-card-hover rounded-lg p-6 ${
+                    index === details.length - 1 ? "sm:col-span-2" : ""
+                  }`}
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-orange-100 text-orange-700 dark:bg-orange-500/15 dark:text-orange-300">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-fitness-orange/12 text-fitness-orange ring-1 ring-fitness-orange/20">
                     <item.icon className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <div>
-                    <h3 className="text-base font-black text-[#171412] dark:text-white">{item.label}</h3>
-                    <p className="mt-1 text-sm leading-6 text-[#5b514a] dark:text-stone-300">{item.text}</p>
+                  <div className="mt-5">
+                    <h3 className="text-lg font-bold text-fitness-text">{item.label}</h3>
+                    <div className="mt-3 space-y-2 text-sm leading-6 text-fitness-muted">
+                      {Array.isArray(item.text) ? (
+                        item.text.map((line) => <p key={line}>{line}</p>)
+                      ) : (
+                        <p>{item.text}</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="relative min-h-[360px] overflow-hidden rounded-lg shadow-premium sm:min-h-[520px]">
+          <div className="grid gap-5 sm:grid-cols-2 lg:pt-6">
+            <div className="premium-card premium-card-hover relative min-h-[360px] overflow-hidden rounded-lg sm:min-h-[540px]">
               <Image
                 src={gymInfo.equipmentImage}
                 alt="Gym member training with dumbbells"
@@ -63,13 +70,18 @@ export function FeaturesSection({ content }) {
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-5 text-white">
-                <ShieldCheck className="h-7 w-7 text-orange-300" aria-hidden="true" />
-                <h3 className="mt-3 text-xl font-black">{content.features.equipmentTitle}</h3>
-                <p className="mt-2 text-sm leading-6 text-stone-200">{content.features.equipmentText}</p>
+              <div className="media-caption-overlay absolute inset-x-0 bottom-0 h-2/3" />
+              <div className="absolute inset-x-0 bottom-0 p-6 text-fitness-text">
+                <ShieldCheck className="h-7 w-7 text-fitness-orange" aria-hidden="true" />
+                <h3 className="mt-4 text-[1.7rem] font-extrabold leading-tight">
+                  {content.features.equipmentTitle}
+                </h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-fitness-muted">
+                  {content.features.equipmentText}
+                </p>
               </div>
             </div>
-            <div className="relative min-h-[360px] overflow-hidden rounded-lg shadow-premium sm:mt-12 sm:min-h-[520px]">
+            <div className="premium-card premium-card-hover relative min-h-[340px] overflow-hidden rounded-lg sm:mt-10 sm:min-h-[500px]">
               <Image
                 src={gymInfo.trainerImage}
                 alt="Personal trainer coaching a gym session"
@@ -77,10 +89,15 @@ export function FeaturesSection({ content }) {
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-5 text-white">
-                <Sparkles className="h-7 w-7 text-amber-300" aria-hidden="true" />
-                <h3 className="mt-3 text-xl font-black">{content.features.trainerTitle}</h3>
-                <p className="mt-2 text-sm leading-6 text-stone-200">{content.features.trainerText}</p>
+              <div className="media-caption-overlay absolute inset-x-0 bottom-0 h-2/3" />
+              <div className="absolute inset-x-0 bottom-0 p-6 text-fitness-text">
+                <Sparkles className="h-7 w-7 text-fitness-orange" aria-hidden="true" />
+                <h3 className="mt-4 text-[1.7rem] font-extrabold leading-tight">
+                  {content.features.trainerTitle}
+                </h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-fitness-muted">
+                  {content.features.trainerText}
+                </p>
               </div>
             </div>
           </div>

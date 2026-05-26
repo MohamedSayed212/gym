@@ -1,12 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Dumbbell, Languages, Moon, Sun } from "lucide-react";
+import { Dumbbell, Languages, Menu, Moon, Sun, X } from "lucide-react";
+
+import { useState } from "react";
 import { useApp } from "../context/AppContext";
 import { gymInfo } from "../lib/site-content";
 
 export function Header() {
-  const { content, theme, toggleTheme, toggleLanguage, isArabic } = useApp();
+  const { content, theme, toggleTheme, toggleLanguage } = useApp();
+
+  const [open, setOpen] = useState(false);
 
   const navItems = [
     { href: "/#home", label: content.nav.home },
@@ -17,57 +21,149 @@ export function Header() {
   ];
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-[#f6f3ed]/90 backdrop-blur-xl dark:border-white/10 dark:bg-[#11100e]/88">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/#home" className="flex min-w-0 items-center gap-3" aria-label={gymInfo.name}>
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#171412] text-orange-400 shadow-premium dark:bg-white dark:text-[#171412]">
-            <Dumbbell className="h-5 w-5" aria-hidden="true" />
-          </span>
-          <span className="truncate text-base font-black uppercase tracking-[0.12em] text-[#171412] dark:text-white">
-            {gymInfo.name}
-          </span>
-        </Link>
+    <>
+      <header className="nav-shell sticky inset-x-0 top-0 z-50 border-b border-fitness-border backdrop-blur-xl">
+        <div className="mx-auto flex h-[78px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          {/* Logo */}
+          <Link href="/#home" className="flex items-center gap-3">
+            <span className="button-primary flex h-12 w-12 items-center justify-center p-0">
+              <Dumbbell className="h-5 w-5" />
+            </span>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
-          {navItems.map((item) => (
+            <span className="text-xl font-extrabold text-fitness-text">
+              {gymInfo.name}
+            </span>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden items-center gap-2 lg:flex">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-xl px-4 py-2 text-sm font-semibold text-fitness-muted transition hover:bg-fitness-soft hover:text-fitness-text"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop Actions */}
+          <div className="hidden items-center gap-3 lg:flex">
+            <button onClick={toggleLanguage} className="icon-button h-11 px-4">
+              <Languages className="h-4 w-4" />
+            </button>
+
+            <button onClick={toggleTheme} className="icon-button h-11 w-11 p-0">
+              {theme === "dark" ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
+            </button>
+
             <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-lg px-3 py-2 text-sm font-semibold text-[#534942] transition hover:bg-black/5 hover:text-[#171412] dark:text-stone-300 dark:hover:bg-white/10 dark:hover:text-white"
+              href="/#pricing"
+              className="button-primary min-h-11 px-5 text-sm font-bold"
             >
-              {item.label}
+              {content.nav.join}
             </Link>
-          ))}
-        </nav>
+          </div>
 
-        <div className="flex items-center gap-2">
+          {/* Mobile Burger */}
           <button
-            type="button"
-            onClick={toggleLanguage}
-            title={content.nav.language}
-            aria-label={content.nav.language}
-            className="inline-flex h-10 items-center gap-2 rounded-lg border border-black/10 bg-white/75 px-3 text-sm font-bold text-[#171412] transition hover:border-orange-500 hover:text-orange-700 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:border-orange-400 dark:hover:text-orange-300"
+            onClick={() => setOpen(true)}
+            className="icon-button flex h-11 w-11 items-center justify-center p-0 lg:hidden"
           >
-            <Languages className="h-4 w-4" aria-hidden="true" />
-            <span>{isArabic ? "EN" : "AR"}</span>
+            <Menu className="h-5 w-5" />
           </button>
-          <button
-            type="button"
-            onClick={toggleTheme}
-            title={content.nav.theme}
-            aria-label={content.nav.theme}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-black/10 bg-white/75 text-[#171412] transition hover:border-orange-500 hover:text-orange-700 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:border-orange-400 dark:hover:text-orange-300"
-          >
-            {theme === "dark" ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
-          </button>
+        </div>
+      </header>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed inset-0 z-[100] transition ${
+          open
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
+        }`}
+      >
+        {/* Overlay */}
+        <div
+          onClick={() => setOpen(false)}
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        />
+
+        {/* Drawer */}
+        <div
+          className={`absolute top-0 h-full w-[85%] max-w-[340px] bg-fitness-card p-6 shadow-2xl transition-all duration-300 ${
+            open ? "right-0" : "-right-full"
+          }`}
+        >
+          {/* Top */}
+          <div className="mb-10 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="button-primary flex h-11 w-11 items-center justify-center p-0">
+                <Dumbbell className="h-5 w-5" />
+              </span>
+
+              <span className="text-lg font-bold">{gymInfo.name}</span>
+            </div>
+
+            <button
+              onClick={() => setOpen(false)}
+              className="icon-button h-10 w-10 p-0"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Nav Links */}
+          <div className="flex flex-col gap-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="rounded-xl px-4 py-3 text-base font-semibold text-fitness-text transition hover:bg-fitness-soft"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Controls */}
+          <div className="mt-8 flex items-center gap-3">
+            <button
+              onClick={toggleLanguage}
+              className="icon-button flex h-11 flex-1 items-center justify-center gap-2"
+            >
+              <Languages className="h-4 w-4" />
+              <span>Language</span>
+            </button>
+
+            <button
+              onClick={toggleTheme}
+              className="icon-button flex h-11 w-11 items-center justify-center p-0"
+            >
+              {theme === "dark" ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
+            </button>
+          </div>
+
+          {/* CTA */}
           <Link
             href="/#pricing"
-            className="hidden rounded-lg bg-orange-600 px-4 py-2 text-sm font-black text-white shadow-premium transition hover:bg-orange-500 sm:inline-flex"
+            onClick={() => setOpen(false)}
+            className="button-primary mt-6 flex min-h-12 w-full items-center justify-center text-sm font-bold"
           >
             {content.nav.join}
           </Link>
         </div>
       </div>
-    </header>
+    </>
   );
 }

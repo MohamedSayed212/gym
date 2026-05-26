@@ -4,10 +4,182 @@
 
 :root {
   color-scheme: light;
+
+  --fitness-bg-rgb: 248 248 248;
+  --fitness-card-rgb: 255 255 255;
+  --fitness-soft-rgb: 244 244 244;
+  --fitness-input-rgb: 255 255 255;
+  --fitness-border-rgb: 224 224 224;
+  --fitness-text-rgb: 18 18 18;
+  --fitness-muted-rgb: 82 82 82;
+  --fitness-subtle-rgb: 120 120 120;
+
+  --fitness-orange-rgb: 255 77 0;
+  --fitness-orange-hover-rgb: 255 103 32;
+
+  --fitness-bg: rgb(var(--fitness-bg-rgb));
+  --fitness-card: rgb(var(--fitness-card-rgb));
+  --fitness-soft: rgb(var(--fitness-soft-rgb));
+  --fitness-input: rgb(var(--fitness-input-rgb));
+  --fitness-border: rgb(var(--fitness-border-rgb));
+  --fitness-text: rgb(var(--fitness-text-rgb));
+  --fitness-muted: rgb(var(--fitness-muted-rgb));
+  --fitness-subtle: rgb(var(--fitness-subtle-rgb));
+  --fitness-orange: rgb(var(--fitness-orange-rgb));
+  --fitness-orange-hover: rgb(var(--fitness-orange-hover-rgb));
+
+  --fitness-nav: rgba(255, 255, 255, 0.9);
+
+  --fitness-premium-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.07), 0 2px 10px rgba(0, 0, 0, 0.04);
+
+  --fitness-premium-hover-shadow:
+    0 26px 58px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.06);
+
+  --fitness-orange-shadow: 0 16px 34px rgba(255, 77, 0, 0.2);
+
+  --fitness-surface-background: #f8f8f8;
+  --fitness-section-light-bg: #f8f8f8;
+  --fitness-section-contrast-bg: #ffffff;
+  --fitness-section-dark-bg: #f3f3f3;
+  --fitness-section-band-bg: #ffffff;
+
+  --fitness-modal-backdrop: rgba(255, 255, 255, 0.82);
+
+  --fitness-hero-filter: saturate(1.15) contrast(1.12) brightness(0.82);
+
+  --fitness-hero-overlay-main: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.26) 42%,
+    rgba(0, 0, 0, 0.48) 100%
+  );
+
+  --fitness-hero-overlay-depth: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.08) 0%,
+    rgba(0, 0, 0, 0.22) 100%
+  );
+
+  --fitness-hero-text: #ffffff;
+  --fitness-hero-muted: rgba(255, 255, 255, 0.84);
+
+  --fitness-media-caption-bg: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.94) 0%,
+    rgba(255, 255, 255, 0.72) 58%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+
+  --fitness-hero-chip-bg: rgba(255, 255, 255, 0.9);
+  --fitness-hero-chip-border: rgba(255, 255, 255, 0.22);
+
+  --fitness-hero-panel-bg: rgba(255, 255, 255, 0.16);
+  --fitness-hero-panel-border: rgba(255, 255, 255, 0.24);
+  --fitness-hero-panel-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  --fitness-hero-button-shadow:
+    0 18px 36px rgba(255, 77, 0, 0.28), 0 8px 18px rgba(0, 0, 0, 0.12);
+
+  --fitness-hero-button-hover-shadow:
+    0 24px 48px rgba(255, 77, 0, 0.32), 0 12px 22px rgba(0, 0, 0, 0.14);
+
+  --fitness-hero-secondary-bg: rgba(255, 255, 255, 0.9);
+  --fitness-hero-secondary-border: rgba(255, 255, 255, 0.3);
 }
 
 :root.dark {
   color-scheme: dark;
+
+  --fitness-bg-rgb: 8 9 11;
+  --fitness-card-rgb: 22 24 28;
+  --fitness-soft-rgb: 255 255 255;
+  --fitness-input-rgb: 16 18 22;
+  --fitness-border-rgb: 45 48 54;
+  --fitness-text-rgb: 245 245 245;
+  --fitness-muted-rgb: 205 205 205;
+  --fitness-subtle-rgb: 145 145 145;
+
+  --fitness-orange-rgb: 255 77 0;
+  --fitness-orange-hover-rgb: 255 111 48;
+
+  --fitness-bg: rgb(var(--fitness-bg-rgb));
+  --fitness-card: rgb(var(--fitness-card-rgb));
+  --fitness-soft: rgba(255, 255, 255, 0.045);
+  --fitness-input: rgba(255, 255, 255, 0.03);
+  --fitness-border: rgb(var(--fitness-border-rgb));
+  --fitness-text: rgb(var(--fitness-text-rgb));
+  --fitness-muted: rgb(var(--fitness-muted-rgb));
+  --fitness-subtle: rgb(var(--fitness-subtle-rgb));
+  --fitness-orange: rgb(var(--fitness-orange-rgb));
+  --fitness-orange-hover: rgb(var(--fitness-orange-hover-rgb));
+
+  --fitness-nav: rgba(8, 9, 11, 0.84);
+
+  --fitness-premium-shadow:
+    0 18px 56px rgba(0, 0, 0, 0.28), 0 4px 16px rgba(0, 0, 0, 0.2);
+
+  --fitness-premium-hover-shadow:
+    0 24px 72px rgba(0, 0, 0, 0.36), 0 10px 24px rgba(0, 0, 0, 0.2);
+
+  --fitness-orange-shadow: 0 18px 40px rgba(255, 77, 0, 0.2);
+
+  --fitness-surface-background: #08090b;
+  --fitness-section-light-bg: #0d0f12;
+  --fitness-section-contrast-bg: #111418;
+  --fitness-section-dark-bg: #0b0d10;
+  --fitness-section-band-bg: #101318;
+
+  --fitness-modal-backdrop: rgba(0, 0, 0, 0.86);
+
+  --fitness-hero-filter: saturate(1.05) contrast(1.08) brightness(0.72);
+
+  --fitness-hero-overlay-main: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.52) 38%,
+    rgba(0, 0, 0, 0.28) 70%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+
+  --fitness-hero-overlay-depth:
+    radial-gradient(
+      72% 68% at 88% 16%,
+      rgba(255, 77, 0, 0.14) 0%,
+      rgba(255, 77, 0, 0.04) 34%,
+      rgba(255, 77, 0, 0) 62%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0.02) 32%,
+      rgba(0, 0, 0, 0.36) 100%
+    );
+
+  --fitness-hero-text: #ffffff;
+  --fitness-hero-muted: rgba(255, 255, 255, 0.84);
+
+  --fitness-media-caption-bg: linear-gradient(
+    0deg,
+    rgba(18, 21, 25, 0.88) 0%,
+    rgba(18, 21, 25, 0.44) 58%,
+    rgba(18, 21, 25, 0) 100%
+  );
+
+  --fitness-hero-chip-bg: rgba(255, 255, 255, 0.08);
+  --fitness-hero-chip-border: rgba(255, 255, 255, 0.16);
+
+  --fitness-hero-panel-bg: rgba(255, 255, 255, 0.075);
+  --fitness-hero-panel-border: rgba(255, 255, 255, 0.15);
+  --fitness-hero-panel-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  --fitness-hero-button-shadow: 0 18px 40px rgba(255, 77, 0, 0.22);
+  --fitness-hero-button-hover-shadow: 0 24px 52px rgba(255, 77, 0, 0.26);
+
+  --fitness-hero-secondary-bg: rgba(255, 255, 255, 0.075);
+  --fitness-hero-secondary-border: rgba(255, 255, 255, 0.16);
 }
 
 * {
@@ -21,14 +193,26 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background: #f6f3ed;
-  color: #171412;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--fitness-bg);
+  color: var(--fitness-text);
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+  text-rendering: geometricPrecision;
+  transition:
+    background-color 220ms ease,
+    color 220ms ease;
 }
 
-.dark body {
-  background: #11100e;
-  color: #f7f1e8;
+[dir="rtl"] body {
+  font-family: var(--font-arabic), var(--font-sans), "Segoe UI", sans-serif;
+}
+
+main {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 button,
@@ -37,10 +221,435 @@ input {
 }
 
 ::selection {
-  background: #f97316;
-  color: #11100e;
+  background: var(--fitness-orange);
+  color: #ffffff;
 }
 
 .premium-ring {
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--fitness-orange) 28%, transparent);
+}
+
+.fitness-surface {
+  background: var(--fitness-surface-background);
+}
+
+.section-light {
+  background: var(--fitness-section-light-bg);
+}
+
+.section-contrast {
+  background: var(--fitness-section-contrast-bg);
+}
+
+.section-dark {
+  background: var(--fitness-section-dark-bg);
+}
+
+.section-band {
+  background: var(--fitness-section-band-bg);
+}
+
+.section-kicker {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fitness-orange);
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--fitness-text);
+  text-wrap: balance;
+}
+
+.section-copy {
+  max-width: 40rem;
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.8;
+  color: var(--fitness-muted);
+  text-wrap: pretty;
+}
+
+[dir="rtl"] .section-kicker {
+  letter-spacing: 0;
+}
+
+[dir="rtl"] .section-title {
+  line-height: 1.18;
+}
+
+[dir="rtl"] .section-copy {
+  line-height: 1.95;
+}
+
+.premium-card {
+  background: var(--fitness-card);
+  border: 1px solid var(--fitness-border);
+  box-shadow: var(--fitness-premium-shadow);
+  color: var(--fitness-text);
+}
+
+.dark .premium-card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.015)
+    ),
+    var(--fitness-card);
+}
+
+.premium-card-hover {
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    background 200ms ease;
+}
+
+.premium-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(
+    in srgb,
+    var(--fitness-orange) 30%,
+    var(--fitness-border) 70%
+  );
+  box-shadow: var(--fitness-premium-hover-shadow);
+}
+
+.button-primary,
+.button-secondary,
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.button-primary:hover,
+.button-secondary:hover,
+.icon-button:hover {
+  transform: translateY(-1px);
+}
+
+.button-primary {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--fitness-orange-rgb)) 0%,
+    rgb(var(--fitness-orange-hover-rgb)) 100%
+  );
+  border-color: rgba(255, 77, 0, 0.55);
+  color: #ffffff;
+  box-shadow: var(--fitness-orange-shadow);
+}
+
+.button-primary:hover {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--fitness-orange-hover-rgb)) 0%,
+    rgb(var(--fitness-orange-rgb)) 100%
+  );
+}
+
+.button-secondary,
+.icon-button {
+  background: var(--fitness-card);
+  border-color: var(--fitness-border);
+  color: var(--fitness-text);
+  box-shadow: var(--fitness-premium-shadow);
+}
+
+.dark .button-secondary,
+.dark .icon-button {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.02)
+    ),
+    var(--fitness-card);
+}
+
+.button-secondary:hover,
+.icon-button:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--fitness-orange) 36%,
+    var(--fitness-border) 64%
+  );
+}
+
+/* HERO */
+
+.hero-title {
+  font-size: clamp(3rem, 6.6vw, 5.8rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+  color: var(--fitness-hero-text);
+  text-shadow: 0 14px 38px rgba(0, 0, 0, 0.28);
+}
+
+[dir="rtl"] .hero-title {
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.hero-image-treatment {
+  filter: var(--fitness-hero-filter);
+  transform: scale(1.015);
+  transform-origin: center center;
+}
+
+.hero-overlay-main {
+  background: var(--fitness-hero-overlay-main);
+}
+
+.hero-overlay-depth {
+  background: var(--fitness-hero-overlay-depth);
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(255, 77, 0, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), transparent 20%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+:root:not(.dark) .hero-section::before {
+  background:
+    radial-gradient(circle at 85% 15%, rgba(255, 77, 0, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), transparent 24%);
+}
+
+.hero-copy-shell {
+  position: relative;
+  z-index: 2;
+  color: var(--fitness-hero-text);
+}
+
+.hero-copy-shell::before {
+  content: "";
+  position: absolute;
+  inset: -22px -18px -16px -18px;
+  border-radius: 24px;
+  background: radial-gradient(
+    70% 75% at 18% 18%,
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.1) 45%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  filter: blur(18px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.dark .hero-copy-shell::before {
+  background: radial-gradient(
+    80% 80% at 18% 18%,
+    rgba(0, 0, 0, 0.38) 0%,
+    rgba(0, 0, 0, 0.18) 52%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.hero-eyebrow {
+  background: var(--fitness-hero-chip-bg);
+  border-color: var(--fitness-hero-chip-border);
+  color: var(--fitness-orange);
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.hero-subtitle {
+  max-width: 40rem;
+  font-size: clamp(1.02rem, 1.55vw, 1.18rem);
+  line-height: 1.75;
+  color: var(--fitness-hero-muted);
+  text-wrap: balance;
+  text-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
+}
+
+[dir="rtl"] .hero-subtitle {
+  line-height: 1.9;
+}
+
+.hero-primary-button,
+.hero-secondary-button {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px) saturate(1.08);
+  -webkit-backdrop-filter: blur(12px) saturate(1.08);
+}
+
+.hero-primary-button::before,
+.hero-secondary-button::before,
+.hero-stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0) 58%
+  );
+  pointer-events: none;
+}
+
+.hero-primary-button {
+  box-shadow: var(--fitness-hero-button-shadow);
+}
+
+.hero-primary-button:hover {
+  box-shadow: var(--fitness-hero-button-hover-shadow);
+}
+
+.hero-secondary-button {
+  background: var(--fitness-hero-secondary-bg);
+  border: 1px solid var(--fitness-hero-secondary-border);
+  color: #111111;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.dark .hero-secondary-button {
+  color: #ffffff;
+}
+
+.hero-stat-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--fitness-hero-panel-bg);
+  border: 1px solid var(--fitness-hero-panel-border);
+  box-shadow: var(--fitness-hero-panel-shadow);
+  color: var(--fitness-hero-text);
+  backdrop-filter: blur(12px) saturate(1.08);
+  -webkit-backdrop-filter: blur(12px) saturate(1.08);
+}
+
+.hero-stat-value {
+  line-height: 0.95;
+  color: var(--fitness-orange);
+}
+
+.hero-stat-label {
+  letter-spacing: normal;
+  color: var(--fitness-hero-text);
+}
+
+.media-caption-overlay {
+  background: var(--fitness-media-caption-bg);
+}
+
+.modal-backdrop {
+  background: var(--fitness-modal-backdrop);
+}
+
+.nav-shell {
+  background: var(--fitness-nav);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+
+.dark .nav-shell {
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.24);
+}
+
+.fade-up {
+  animation: fade-up 780ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.fade-up-delay {
+  animation: fade-up 880ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+}
+
+.fade-up-late {
+  animation: fade-up 920ms cubic-bezier(0.16, 1, 0.3, 1) 220ms both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-rise {
+  from {
+    opacity: 0.35;
+    transform: translateY(22px) scale(0.995);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .scroll-rise {
+    animation: scroll-rise both;
+    animation-timeline: view();
+    animation-range: entry 8% cover 32%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+    line-height: 1;
+  }
+
+  .hero-title {
+    font-size: clamp(2.6rem, 15vw, 4rem);
+    line-height: 0.98;
+  }
+
+  [dir="rtl"] .hero-title {
+    font-size: clamp(2.35rem, 13vw, 3.6rem);
+    line-height: 1.12;
+  }
+
+  .hero-copy-shell::before {
+    inset: -24px -16px -18px -16px;
+  }
 }

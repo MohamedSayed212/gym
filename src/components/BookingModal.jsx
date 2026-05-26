@@ -92,7 +92,7 @@ export function BookingModal({ selectedPackage, content, language, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-[70] flex items-center justify-center bg-black/70 px-4 py-8 backdrop-blur-sm"
+      className="modal-backdrop fixed inset-0 z-[70] flex items-center justify-center px-4 py-8 backdrop-blur-xl"
       role="dialog"
       aria-modal="true"
       aria-labelledby="booking-title"
@@ -102,13 +102,11 @@ export function BookingModal({ selectedPackage, content, language, onClose }) {
         }
       }}
     >
-      <div className="w-full max-w-lg rounded-lg border border-white/10 bg-[#f6f3ed] p-6 shadow-premium dark:bg-[#171412] sm:p-8">
+      <div className="premium-card w-full max-w-lg rounded-lg p-6 shadow-premium sm:p-8">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.16em] text-orange-700 dark:text-orange-300">
-              {content.booking.packageLabel}
-            </p>
-            <h2 id="booking-title" className="mt-2 text-3xl font-black text-[#171412] dark:text-white">
+            <p className="section-kicker">{content.booking.packageLabel}</p>
+            <h2 id="booking-title" className="mt-3 text-[2.15rem] font-extrabold leading-tight text-fitness-text">
               {content.booking.title}
             </h2>
           </div>
@@ -117,52 +115,52 @@ export function BookingModal({ selectedPackage, content, language, onClose }) {
             onClick={onClose}
             title={content.booking.close}
             aria-label={content.booking.close}
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-black/10 bg-white text-[#171412] transition hover:border-orange-500 hover:text-orange-700 dark:border-white/10 dark:bg-white/10 dark:text-white"
+            className="icon-button h-11 w-11 shrink-0 p-0"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
 
-        <div className="mt-6 rounded-lg border border-black/10 bg-white p-4 dark:border-white/10 dark:bg-white/[0.06]">
+        <div className="mt-7 rounded-lg border border-fitness-border bg-fitness-soft p-4">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="text-lg font-black text-[#171412] dark:text-white">{planContent.name}</p>
-              <p className="mt-1 text-sm font-semibold text-[#5b514a] dark:text-stone-300">{planContent.duration}</p>
+              <p className="text-xl font-extrabold text-fitness-text">{planContent.name}</p>
+              <p className="mt-1 text-sm font-medium text-fitness-subtle">{planContent.duration}</p>
             </div>
-            <p className="text-xl font-black text-orange-700 dark:text-orange-300">{selectedPackage.price}</p>
+            <p className="text-2xl font-extrabold text-fitness-orange">{selectedPackage.price}</p>
           </div>
         </div>
 
         {status === "success" ? (
-          <div className="mt-6 rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-5 text-emerald-800 dark:text-emerald-200">
+          <div className="mt-6 rounded-lg border border-emerald-500/35 bg-emerald-500/10 p-5 text-emerald-700 dark:text-emerald-200">
             <CheckCircle2 className="h-7 w-7" aria-hidden="true" />
             <p className="mt-3 text-base font-bold leading-7">{message}</p>
           </div>
         ) : (
           <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
             <label className="block">
-              <span className="text-sm font-black text-[#171412] dark:text-white">{content.booking.nameLabel}</span>
-              <span className="mt-2 flex items-center gap-3 rounded-lg border border-black/10 bg-white px-4 py-3 focus-within:border-orange-500 dark:border-white/10 dark:bg-white/[0.06]">
-                <User className="h-5 w-5 shrink-0 text-orange-700 dark:text-orange-300" aria-hidden="true" />
+              <span className="text-sm font-semibold text-fitness-text">{content.booking.nameLabel}</span>
+              <span className="mt-2 flex items-center gap-3 rounded-lg border border-fitness-border bg-fitness-input px-4 py-4 transition focus-within:border-fitness-orange">
+                <User className="h-5 w-5 shrink-0 text-fitness-orange" aria-hidden="true" />
                 <input
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                   placeholder={content.booking.namePlaceholder}
-                  className="min-w-0 flex-1 bg-transparent text-[#171412] outline-none placeholder:text-[#8b8078] dark:text-white dark:placeholder:text-stone-500"
+                  className="min-w-0 flex-1 bg-transparent text-fitness-text outline-none placeholder:text-fitness-subtle"
                   autoComplete="name"
                 />
               </span>
             </label>
 
             <label className="block">
-              <span className="text-sm font-black text-[#171412] dark:text-white">{content.booking.phoneLabel}</span>
-              <span className="mt-2 flex items-center gap-3 rounded-lg border border-black/10 bg-white px-4 py-3 focus-within:border-orange-500 dark:border-white/10 dark:bg-white/[0.06]">
-                <Phone className="h-5 w-5 shrink-0 text-orange-700 dark:text-orange-300" aria-hidden="true" />
+              <span className="text-sm font-semibold text-fitness-text">{content.booking.phoneLabel}</span>
+              <span className="mt-2 flex items-center gap-3 rounded-lg border border-fitness-border bg-fitness-input px-4 py-4 transition focus-within:border-fitness-orange">
+                <Phone className="h-5 w-5 shrink-0 text-fitness-orange" aria-hidden="true" />
                 <input
                   value={phone}
                   onChange={(event) => setPhone(event.target.value)}
                   placeholder={content.booking.phonePlaceholder}
-                  className="min-w-0 flex-1 bg-transparent text-[#171412] outline-none placeholder:text-[#8b8078] dark:text-white dark:placeholder:text-stone-500"
+                  className="min-w-0 flex-1 bg-transparent text-fitness-text outline-none placeholder:text-fitness-subtle"
                   autoComplete="tel"
                   inputMode="tel"
                 />
@@ -170,7 +168,7 @@ export function BookingModal({ selectedPackage, content, language, onClose }) {
             </label>
 
             {message ? (
-              <p className="rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm font-semibold text-red-800 dark:text-red-200">
+              <p className="rounded-lg border border-red-500/35 bg-red-500/10 p-3 text-sm font-bold text-red-700 dark:text-red-200">
                 {message}
               </p>
             ) : null}
@@ -178,7 +176,7 @@ export function BookingModal({ selectedPackage, content, language, onClose }) {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-orange-600 px-5 py-4 text-base font-black text-white transition hover:bg-orange-500 disabled:cursor-not-allowed disabled:opacity-70"
+              className="button-primary min-h-14 w-full px-5 text-base font-bold disabled:cursor-not-allowed disabled:opacity-70"
             >
               {status === "loading" ? <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" /> : <CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
               {status === "loading" ? content.booking.submitting : content.booking.submit}
