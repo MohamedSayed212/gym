@@ -1,7 +1,13 @@
 import Image from "next/image";
-import { Clock3, MapPin, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
-import { gymInfo } from "../lib/site-content";
+import {
+  Clock3,
+  MapPin,
+  ShieldCheck,
+  Sparkles,
+  UsersRound,
+} from "lucide-react";
 import { motion } from "../lib/motion";
+import { gymInfo } from "../lib/site-content";
 
 export function FeaturesSection({ content, isArabic }) {
   const details = [
@@ -34,11 +40,17 @@ export function FeaturesSection({ content, isArabic }) {
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
       >
         <div className="grid gap-16 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
-          <div className={`space-y-10 text-left ${isArabic ? "lg:order-2" : ""}`}>
+          <div
+            className={`space-y-10 ${isArabic ? "text-right lg:order-2" : "text-left"}`}
+          >
             <div className="max-w-3xl space-y-4">
               <p className="section-kicker">{content.features.eyebrow}</p>
-              <h2 className="section-title max-w-3xl">{content.features.title}</h2>
-              <p className="section-copy leading-normal">{content.features.description}</p>
+              <h2 className="section-title max-w-3xl">
+                {content.features.title}
+              </h2>
+              <p className="section-copy leading-normal">
+                {content.features.description}
+              </p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
@@ -57,7 +69,9 @@ export function FeaturesSection({ content, isArabic }) {
                     <item.icon className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <div className="mt-5 space-y-3">
-                    <h3 className="text-lg font-bold leading-normal text-fitness-text">{item.label}</h3>
+                    <h3 className="text-lg font-bold leading-normal text-fitness-text">
+                      {item.label}
+                    </h3>
                     <div className="space-y-2 text-sm leading-normal text-fitness-muted">
                       {Array.isArray(item.text) ? (
                         item.text.map((line) => <p key={line}>{line}</p>)
@@ -71,7 +85,9 @@ export function FeaturesSection({ content, isArabic }) {
             </div>
           </div>
 
-          <div className={`grid gap-5 sm:grid-cols-2 lg:pt-6 ${isArabic ? "lg:order-1" : ""}`}>
+          <div
+            className={`grid gap-5 sm:grid-cols-2 lg:pt-6 ${isArabic ? "lg:order-1" : ""}`}
+          >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -81,22 +97,28 @@ export function FeaturesSection({ content, isArabic }) {
             >
               <Image
                 src={gymInfo.equipmentImage}
-                alt="Gym member training with dumbbells"
+                alt="Modern gym equipment and dumbbells"
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
               />
-              <div className="media-caption-overlay absolute inset-x-0 bottom-0 h-2/3" />
-              <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 text-left text-fitness-text">
-                <ShieldCheck className="h-7 w-7 text-fitness-orange" aria-hidden="true" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+              <div
+                className={`absolute inset-x-0 bottom-0 space-y-3 p-6 text-fitness-text ${isArabic ? "text-right" : "text-left"}`}
+              >
+                <ShieldCheck
+                  className={`h-7 w-7 text-fitness-orange ${isArabic ? "mr-0 ml-auto" : ""}`}
+                  aria-hidden="true"
+                />
                 <h3 className="text-[1.7rem] font-extrabold leading-normal">
                   {content.features.equipmentTitle}
                 </h3>
-                <p className="max-w-sm text-sm leading-normal text-fitness-muted">
+                <p className="max-w-sm text-sm leading-normal text-white/85">
                   {content.features.equipmentText}
                 </p>
               </div>
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -106,18 +128,23 @@ export function FeaturesSection({ content, isArabic }) {
             >
               <Image
                 src={gymInfo.trainerImage}
-                alt="Personal trainer coaching a gym session"
+                alt="Coach guiding a member during training"
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
               />
-              <div className="media-caption-overlay absolute inset-x-0 bottom-0 h-2/3" />
-              <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 text-left text-fitness-text">
-                <Sparkles className="h-7 w-7 text-fitness-orange" aria-hidden="true" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+              <div
+                className={`absolute inset-x-0 bottom-0 space-y-3 p-6 text-fitness-text ${isArabic ? "text-right" : "text-left"}`}
+              >
+                <Sparkles
+                  className={`h-7 w-7 text-fitness-orange ${isArabic ? "mr-0 ml-auto" : ""}`}
+                  aria-hidden="true"
+                />
                 <h3 className="text-[1.7rem] font-extrabold leading-normal">
                   {content.features.trainerTitle}
                 </h3>
-                <p className="max-w-sm text-sm leading-normal text-fitness-muted">
+                <p className="max-w-sm text-sm leading-normal text-white/85">
                   {content.features.trainerText}
                 </p>
               </div>

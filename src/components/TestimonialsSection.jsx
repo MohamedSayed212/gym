@@ -1,50 +1,8 @@
 import { Quote, Star } from "lucide-react";
 import { motion } from "../lib/motion";
 
-const englishReviews = [
-  {
-    name: "Mona Adel",
-    role: "Member for 8 months",
-    quote:
-      "The trainers corrected my form in the first week, and the equipment is always ready. It feels serious without being intimidating.",
-  },
-  {
-    name: "Karim Hassan",
-    role: "Performance member",
-    quote:
-      "I booked online, paid cash the next day, and started immediately. The 3-month package kept me consistent.",
-  },
-  {
-    name: "Nour Samir",
-    role: "Elite member",
-    quote:
-      "Clean floor, late hours, and coaches who actually follow up. It is the easiest gym routine I have stuck with.",
-  },
-];
-
-const arabicReviews = [
-  {
-    name: "منى عادل",
-    role: "عضوة منذ 8 أشهر",
-    quote:
-      "الكباتن هنا عدلولي التكنيك وبيركزوا معايا من أول أسبوع، والأجهزة دايماً جاهزة وصيانتها ممتازة. المكان بجد مريح جداً للبنات ومش زحمة وقت التمرين.",
-  },
-  {
-    name: "كريم حسن",
-    role: "عضو باقة الأداء",
-    quote:
-      "حجزت أونلاين ودفعت كاش في الفرع تاني يوم وبدأت علطول. نظام الـ 3 شهور موفر جداً والكباتن بيتابعوا الـ InBody بانتظام.",
-  },
-  {
-    name: "نور سمير",
-    role: "عضو النخبة",
-    quote:
-      "الجيم نضيف جداً ومواعيدهم مظبوطة، وفيه تكييف قوي شغال طول الوقت. أحسن حاجة إن الكباتن هنا بتفهم ومبتسيبكش واقف لوحدك.",
-  },
-];
-
 export function TestimonialsSection({ content, isArabic }) {
-  const reviews = isArabic ? arabicReviews : englishReviews;
+  const reviews = content.testimonials.reviews;
 
   const initialsForName = (name) =>
     name
@@ -63,7 +21,9 @@ export function TestimonialsSection({ content, isArabic }) {
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
       >
         <div className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
-          <div className={`max-w-xl space-y-4 text-left ${isArabic ? "lg:order-2" : ""}`}>
+          <div
+            className={`max-w-xl space-y-4 ${isArabic ? "text-right lg:order-2" : "text-left"}`}
+          >
             <p className="section-kicker">{content.testimonials.eyebrow}</p>
             <h2 className="section-title max-w-2xl">{content.testimonials.title}</h2>
           </div>
@@ -78,10 +38,10 @@ export function TestimonialsSection({ content, isArabic }) {
                 key={review.name}
                 className={`premium-card premium-card-hover rounded-lg p-6 sm:p-7 ${
                   index === 0 ? "sm:col-span-2" : ""
-                } text-left`}
+                } ${isArabic ? "text-right" : "text-left"}`}
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-4">
+                <div className={`flex items-start justify-between gap-4 ${isArabic ? "flex-row-reverse" : ""}`}>
+                  <div className={`flex items-center gap-4 ${isArabic ? "flex-row-reverse" : ""}`}>
                     <span className="flex h-12 w-12 items-center justify-center rounded-full bg-fitness-soft text-sm font-extrabold text-fitness-text ring-1 ring-fitness-border">
                       {initialsForName(review.name)}
                     </span>

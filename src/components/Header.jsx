@@ -23,25 +23,29 @@ export function Header() {
   return (
     <>
       <header className="nav-shell sticky inset-x-0 top-0 z-50 border-b border-fitness-border backdrop-blur-xl">
-        <div className="mx-auto flex h-[78px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <Link href="/#home" className="flex items-center gap-3">
-            <span className="button-primary flex h-12 w-12 items-center justify-center p-0">
-              <Dumbbell className="h-5 w-5" />
+            <span className="button-primary flex h-10 w-10 items-center justify-center p-0">
+              <Dumbbell className="h-4 w-4" />
             </span>
 
-            <span className="text-xl font-extrabold text-fitness-text">
+            <span className="text-lg font-extrabold text-fitness-text sm:text-xl">
               {gymInfo.name}
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className={`hidden items-center gap-2 lg:flex ${isArabic ? "lg:flex-row-reverse" : ""}`}>
+          <nav
+            className={`hidden items-center gap-1.5 lg:flex ${
+              isArabic ? "lg:flex-row-reverse" : ""
+            }`}
+          >
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-xl px-4 py-2 text-sm font-semibold text-fitness-muted transition hover:bg-fitness-soft hover:text-fitness-text"
+                className="rounded-xl px-3.5 py-2 text-sm font-semibold text-fitness-muted transition hover:bg-fitness-soft hover:text-fitness-text"
               >
                 {item.label}
               </Link>
@@ -49,7 +53,7 @@ export function Header() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-2.5 lg:flex">
             <button onClick={toggleLanguage} className="icon-button h-11 gap-2 px-4 text-sm font-semibold">
               <Languages className="h-4 w-4" />
               <span>{isArabic ? "EN" : "AR"}</span>

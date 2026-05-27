@@ -1,4 +1,5 @@
 import { AdminDashboard } from "../../components/AdminDashboard";
+import { FloatingWhatsAppButton } from "../../components/FloatingWhatsAppButton";
 import { Header } from "../../components/Header";
 
 export const metadata = {
@@ -10,6 +11,7 @@ export default function AdminPage() {
     <>
       <Header />
       <AdminDashboard />
+      <FloatingWhatsAppButton />
     </>
   );
 }
