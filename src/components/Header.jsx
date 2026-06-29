@@ -19,7 +19,6 @@ export function Header() {
     { href: "/#about", label: content.nav.about },
     { href: "/#pricing", label: content.nav.pricing },
     { href: "/#reviews", label: content.nav.reviews },
-    { href: "/admin", label: content.nav.admin },
   ];
 
   const handleAnchorClick = (event, href, shouldCloseMenu = false) => {
