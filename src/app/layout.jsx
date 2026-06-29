@@ -16,7 +16,8 @@ const alexandria = Alexandria({
 
 export const metadata = {
   title: "Iron Pulse Gym | Premium Fitness Memberships",
-  description: "A premium bilingual gym website with online booking and a Supabase-powered admin dashboard.",
+  description:
+    "A premium bilingual gym website with online booking and a Supabase-powered admin dashboard.",
 };
 
 export default function RootLayout({ children }) {

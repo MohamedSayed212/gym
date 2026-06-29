@@ -11,80 +11,151 @@ export function PricingSection({ content, language, isArabic, onBook }) {
         transition={{ duration: 0.4 }}
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
       >
-        <div className="mx-auto max-w-3xl space-y-4 text-center">
+        <div className="mx-auto max-w-2xl space-y-4 text-center">
           <p className="section-kicker">{content.pricing.eyebrow}</p>
-          <h2 className="section-title mx-auto max-w-3xl">{content.pricing.title}</h2>
-          <p className="section-copy mx-auto leading-normal">{content.pricing.description}</p>
+          <h2 className="section-title mx-auto">{content.pricing.title}</h2>
+          <p className="section-copy mx-auto">{content.pricing.description}</p>
         </div>
 
-        <div className="mt-14 grid gap-5 lg:grid-cols-3 lg:items-stretch">
+        <div className="mt-14 grid gap-4 lg:grid-cols-3 lg:items-stretch">
           {packages.map((plan) => {
             const planContent = plan[language];
 
+            if (plan.featured) {
+              return (
+                <motion.article
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  whileHover={{ y: -5 }}
+                  key={plan.id}
+                  className={`relative flex h-full flex-col overflow-hidden rounded-lg px-7 py-8 transition lg:-translate-y-2 lg:py-9 ${
+                    isArabic ? "text-right" : "text-left"
+                  }`}
+                  style={{
+                    background: "linear-gradient(160deg, #1e1e1e 0%, #181818 100%)",
+                    border: "1px solid #303030",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.36), 0 2px 8px rgba(0,0,0,0.24)",
+                  }}
+                >
+                  {/* Top accent bar */}
+                  <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#E85D04] via-[#F97316] to-[#E85D04]" />
+
+                  {/* Popular badge */}
+                  <div className={`absolute top-5 ${isArabic ? "left-6" : "right-6"}`}>
+                    <span className="rounded-sm bg-fitness-orange px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-wide text-white">
+                      {content.pricing.popular}
+                    </span>
+                  </div>
+
+                  <div className={`flex items-start gap-4 pt-3 ${isArabic ? "flex-row-reverse" : ""}`}>
+                    <div className="space-y-1.5">
+                      <p className="text-xs font-semibold uppercase tracking-widest text-fitness-subtle">
+                        {planContent.duration}
+                      </p>
+                      <h3 className="text-2xl font-extrabold text-fitness-text">
+                        {planContent.name}
+                      </h3>
+                    </div>
+                    <span className="ml-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-fitness-orange text-white">
+                      <Flame className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                  </div>
+
+                  <div className="mt-7 text-[2.5rem] font-extrabold leading-none tracking-tight text-fitness-text">
+                    {plan.price}
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-fitness-muted">
+                    {planContent.description}
+                  </p>
+
+                  <ul className="mt-7 space-y-3 border-t border-fitness-border pt-7">
+                    {planContent.perks.map((perk) => (
+                      <li
+                        key={perk}
+                        className={`flex gap-3 text-sm font-medium text-fitness-text ${
+                          isArabic ? "flex-row-reverse" : ""
+                        }`}
+                      >
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-fitness-orange" aria-hidden="true" />
+                        <span>{perk}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    type="button"
+                    onClick={() => onBook(plan)}
+                    className="button-primary mt-auto pt-7 min-h-[48px] w-full px-5 text-sm font-bold"
+                    style={{ marginTop: "auto", paddingTop: 0 }}
+                  >
+                    <Ticket className="h-4 w-4" aria-hidden="true" />
+                    {content.pricing.book}
+                  </button>
+                </motion.article>
+              );
+            }
+
+            /* Starter & Elite — clean flat cards */
             return (
               <motion.article
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                whileHover={{ y: -6 }}
+                whileHover={{ y: -3 }}
                 key={plan.id}
-                className={`group premium-card premium-card-hover relative flex h-full flex-col rounded-lg px-6 py-6 transition hover:shadow-[0_24px_54px_rgba(255,77,0,0.2)] sm:px-7 ${
-                  plan.featured
-                    ? "border-fitness-orange/70 lg:-translate-y-2"
-                    : ""
+                className={`premium-card relative flex h-full flex-col rounded-lg px-6 py-7 transition ${
+                  isArabic ? "text-right" : "text-left"
                 }`}
               >
-                <div className="pointer-events-none absolute inset-0 rounded-lg bg-gradient-to-b from-white/5 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
-                <div className={`absolute inset-x-0 top-0 h-1 rounded-t-lg bg-gradient-to-r ${plan.accent}`} />
-                {plan.featured ? (
-                  <div className="absolute end-6 top-5 rounded-full border border-fitness-orange/30 bg-fitness-orange/10 px-3 py-1 text-[0.72rem] font-bold text-fitness-orange">
-                    {content.pricing.popular}
-                  </div>
-                ) : null}
-                <div
-                  className={`flex items-start justify-between gap-4 pt-4 ${
-                    isArabic ? "text-right" : "text-left"
-                  }`}
-                >
-                  <div className="space-y-2">
-                    <p className="text-sm font-semibold text-fitness-orange">
+                {/* Subtle top accent line */}
+                <div className={`absolute inset-x-0 top-0 h-px ${plan.accentLine}`} />
+
+                <div className={`flex items-start gap-4 pt-3 ${isArabic ? "flex-row-reverse" : ""}`}>
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-fitness-subtle">
                       {planContent.duration}
                     </p>
-                    <h3 className="text-[1.75rem] font-extrabold leading-normal text-fitness-text">
+                    <h3 className="text-2xl font-extrabold text-fitness-text">
                       {planContent.name}
                     </h3>
                   </div>
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-fitness-orange/12 text-fitness-orange ring-1 ring-fitness-orange/20">
+                  <span className="ml-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-fitness-soft text-fitness-orange">
                     <Flame className="h-5 w-5" aria-hidden="true" />
                   </span>
                 </div>
-                <div className={`mt-7 text-[2.65rem] font-extrabold leading-none text-fitness-text ${isArabic ? "text-right" : "text-left"}`}>
+
+                <div className="mt-7 text-[2.5rem] font-extrabold leading-none tracking-tight text-fitness-text">
                   {plan.price}
                 </div>
-                <p className={`mt-4 text-sm leading-normal text-fitness-muted ${isArabic ? "text-right" : "text-left"}`}>
+                <p className="mt-3 text-sm leading-relaxed text-fitness-muted">
                   {planContent.description}
                 </p>
-                <ul className="mt-6 space-y-2.5">
+
+                <ul className="mt-7 space-y-3 border-t border-fitness-border pt-7">
                   {planContent.perks.map((perk) => (
                     <li
                       key={perk}
-                      className={`flex gap-3 text-sm font-medium leading-normal text-fitness-text ${
-                        isArabic ? "flex-row-reverse text-right" : "text-left"
+                      className={`flex gap-3 text-sm font-medium text-fitness-text ${
+                        isArabic ? "flex-row-reverse" : ""
                       }`}
                     >
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-fitness-orange" aria-hidden="true" />
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-fitness-muted" aria-hidden="true" />
                       <span>{perk}</span>
                     </li>
                   ))}
                 </ul>
-                <button
-                  type="button"
-                  onClick={() => onBook(plan)}
-                  className="button-primary mt-7 min-h-12 w-full px-5 text-sm font-bold shadow-[0_16px_30px_rgba(255,77,0,0.22)] transition hover:shadow-[0_22px_36px_rgba(255,77,0,0.3)]"
-                >
-                  <Ticket className="h-5 w-5" aria-hidden="true" />
-                  {content.pricing.book}
-                </button>
+
+                <div className="mt-auto pt-7">
+                  <button
+                    type="button"
+                    onClick={() => onBook(plan)}
+                    className="button-secondary min-h-[48px] w-full px-5 text-sm font-semibold"
+                  >
+                    <Ticket className="h-4 w-4" aria-hidden="true" />
+                    {content.pricing.book}
+                  </button>
+                </div>
               </motion.article>
             );
           })}

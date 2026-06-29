@@ -1,4 +1,4 @@
-import { Quote, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { motion } from "../lib/motion";
 
 export function TestimonialsSection({ content, isArabic }) {
@@ -20,56 +20,79 @@ export function TestimonialsSection({ content, isArabic }) {
         transition={{ duration: 0.4 }}
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
       >
-        <div className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+        <div className="grid gap-14 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+          {/* Heading column */}
           <div
             className={`max-w-xl space-y-4 ${isArabic ? "text-right lg:order-2" : "text-left"}`}
           >
             <p className="section-kicker">{content.testimonials.eyebrow}</p>
             <h2 className="section-title max-w-2xl">{content.testimonials.title}</h2>
+            <p className="section-copy">{content.testimonials.description ?? ""}</p>
           </div>
 
-          <div className={`grid gap-5 sm:grid-cols-2 ${isArabic ? "lg:order-1" : ""}`}>
-            {reviews.map((review, index) => (
-              <motion.article
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                whileHover={{ y: -4 }}
-                key={review.name}
-                className={`premium-card premium-card-hover rounded-lg p-6 sm:p-7 ${
-                  index === 0 ? "sm:col-span-2" : ""
-                } ${isArabic ? "text-right" : "text-left"}`}
-              >
-                <div className={`flex items-start justify-between gap-4 ${isArabic ? "flex-row-reverse" : ""}`}>
-                  <div className={`flex items-center gap-4 ${isArabic ? "flex-row-reverse" : ""}`}>
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-fitness-soft text-sm font-extrabold text-fitness-text ring-1 ring-fitness-border">
+          {/* Reviews column */}
+          <div className={`flex flex-col gap-4 ${isArabic ? "lg:order-1" : ""}`}>
+            {reviews.map((review, index) => {
+              const isFeatured = index === 0;
+
+              return (
+                <motion.article
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  key={review.name}
+                  className={`rounded-lg border border-fitness-border bg-fitness-card ${
+                    isFeatured
+                      ? "px-7 py-8 sm:px-8"
+                      : "px-6 py-6"
+                  } ${isArabic ? "text-right" : "text-left"}`}
+                  style={{
+                    boxShadow: isFeatured
+                      ? "0 4px 20px rgba(0,0,0,0.22)"
+                      : "var(--fitness-premium-shadow)",
+                  }}
+                >
+                  {/* Stars */}
+                  <div className={`flex gap-1 text-fitness-orange ${isArabic ? "justify-end" : ""}`} aria-label="Five star review">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className={`fill-current ${isFeatured ? "h-4 w-4" : "h-3.5 w-3.5"}`} aria-hidden="true" />
+                    ))}
+                  </div>
+
+                  {/* Quote */}
+                  <p
+                    className={`mt-4 text-fitness-text ${
+                      isFeatured
+                        ? "text-lg font-medium leading-relaxed"
+                        : "text-sm leading-relaxed text-fitness-muted"
+                    }`}
+                  >
+                    {review.quote}
+                  </p>
+
+                  {/* Author */}
+                  <div
+                    className={`mt-5 flex items-center gap-3 border-t border-fitness-border pt-5 ${
+                      isArabic ? "flex-row-reverse" : ""
+                    }`}
+                  >
+                    <span
+                      className={`flex shrink-0 items-center justify-center rounded-full bg-fitness-soft font-bold text-fitness-text ring-1 ring-fitness-border ${
+                        isFeatured ? "h-11 w-11 text-base" : "h-9 w-9 text-xs"
+                      }`}
+                    >
                       {initialsForName(review.name)}
                     </span>
                     <div>
-                      <p className="text-base font-bold text-fitness-text">{review.name}</p>
-                      <p className="mt-1 text-sm font-medium text-fitness-subtle">{review.role}</p>
+                      <p className={`font-semibold text-fitness-text ${isFeatured ? "text-base" : "text-sm"}`}>
+                        {review.name}
+                      </p>
+                      <p className="mt-0.5 text-xs text-fitness-subtle">{review.role}</p>
                     </div>
                   </div>
-                  <span className="rounded-full border border-fitness-orange/18 bg-fitness-orange/10 p-2 text-fitness-orange">
-                    <Quote className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                </div>
-
-                <div className="mt-5 flex gap-1 text-fitness-orange" aria-label="Five star review">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <Star key={index} className="h-4 w-4 fill-current" aria-hidden="true" />
-                  ))}
-                </div>
-
-                <p
-                  className={`mt-5 text-fitness-muted ${
-                    index === 0 ? "max-w-3xl text-lg leading-normal" : "text-base leading-normal"
-                  }`}
-                >
-                  {review.quote}
-                </p>
-              </motion.article>
-            ))}
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </motion.div>

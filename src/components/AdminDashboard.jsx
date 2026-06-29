@@ -2,10 +2,12 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
+  Search,
   LockKeyhole,
   MoreVertical,
   RefreshCw,
   ShieldCheck,
+  X,
 } from "lucide-react";
 import { useApp } from "../context/AppContext";
 
@@ -22,6 +24,8 @@ export function AdminDashboard() {
   const [message, setMessage] = useState("");
   const [updatingId, setUpdatingId] = useState("");
   const [openMenuId, setOpenMenuId] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const metrics = useMemo(() => {
     const paid = leads.filter((lead) => lead.status === "Paid Cash").length;
@@ -32,6 +36,34 @@ export function AdminDashboard() {
       pending: leads.length - paid,
     };
   }, [leads]);
+
+  const filteredLeads = useMemo(() => {
+    const query = searchValue.trim().toLowerCase();
+
+    return leads.filter((lead) => {
+      const leadStatus = lead.status === "Paid Cash" ? "paid" : "pending";
+      const matchesStatus =
+        statusFilter === "all" ||
+        (statusFilter === "paid" && lead.status === "Paid Cash") ||
+        (statusFilter === "pending" && lead.status !== "Paid Cash");
+
+      if (!matchesStatus) {
+        return false;
+      }
+
+      if (!query) {
+        return true;
+      }
+
+      return (
+        lead.name?.toLowerCase().includes(query) ||
+        lead.phone?.toLowerCase().includes(query) ||
+        lead.package_type?.toLowerCase().includes(query) ||
+        lead.status?.toLowerCase().includes(query) ||
+        leadStatus.includes(query)
+      );
+    });
+  }, [leads, searchValue, statusFilter]);
 
   const formatDate = useCallback(
     (value) => {
@@ -356,6 +388,63 @@ export function AdminDashboard() {
           </p>
         ) : null}
 
+        <div className="mt-6 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+          <div className="relative">
+            <Search
+              className={`pointer-events-none absolute top-1/2 h-4 w-4 -translate-y-1/2 text-fitness-subtle ${
+                isArabic ? "right-3" : "left-3"
+              }`}
+            />
+            <input
+              value={searchValue}
+              onChange={(event) => setSearchValue(event.target.value)}
+              placeholder={content.admin.searchPlaceholder}
+              className={`w-full rounded-lg border border-fitness-border bg-fitness-input py-3 text-sm text-fitness-text outline-none transition placeholder:text-fitness-subtle focus:border-fitness-orange ${
+                isArabic ? "pl-20 pr-9" : "pl-9 pr-20"
+              } ${
+                isArabic ? "text-right" : "text-left"
+              }`}
+            />
+            {searchValue ? (
+              <button
+                type="button"
+                onClick={() => setSearchValue("")}
+                className={`absolute top-1/2 inline-flex h-8 -translate-y-1/2 items-center gap-1 rounded-md px-2 text-xs font-bold text-fitness-subtle transition hover:bg-fitness-soft hover:text-fitness-text ${
+                  isArabic ? "left-2" : "right-2"
+                }`}
+              >
+                <X className="h-3.5 w-3.5" aria-hidden="true" />
+                {content.admin.clearSearch}
+              </button>
+            ) : null}
+          </div>
+
+          <div
+            className={`flex flex-wrap gap-2 ${
+              isArabic ? "justify-end" : "justify-start"
+            }`}
+          >
+            {[
+              { value: "all", label: content.admin.filterAll },
+              { value: "pending", label: content.admin.pending },
+              { value: "paid", label: content.admin.paid },
+            ].map((item) => (
+              <button
+                key={item.value}
+                type="button"
+                onClick={() => setStatusFilter(item.value)}
+                className={`rounded-lg border px-3 py-2 text-xs font-bold transition ${
+                  statusFilter === item.value
+                    ? "border-fitness-orange/70 bg-fitness-orange/15 text-fitness-orange"
+                    : "border-fitness-border bg-fitness-card text-fitness-muted hover:border-fitness-orange/45 hover:text-fitness-text"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="premium-card mt-8 overflow-hidden rounded-lg">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-fitness-border text-sm">
@@ -415,8 +504,17 @@ export function AdminDashboard() {
                       {content.admin.empty}
                     </td>
                   </tr>
+                ) : filteredLeads.length === 0 ? (
+                  <tr>
+                    <td
+                      colSpan="6"
+                      className="px-5 py-12 text-center font-bold text-fitness-muted"
+                    >
+                      {content.admin.noMatches}
+                    </td>
+                  </tr>
                 ) : (
-                  leads.map((lead) => (
+                  filteredLeads.map((lead) => (
                     <tr
                       key={lead.id}
                       className="text-fitness-muted transition hover:bg-fitness-soft"
