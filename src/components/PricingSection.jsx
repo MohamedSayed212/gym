@@ -77,7 +77,12 @@ export function PricingSection({ content, language, isArabic, onBook }) {
                 <div className="mt-auto pt-8">
                   <button
                     type="button"
-                    onClick={() => onBook(plan)}
+                    onClick={() =>
+                      onBook({
+                        planId: plan.id,
+                        planName: `${planContent.name} - ${planContent.duration}`,
+                      })
+                    }
                     className={`min-h-[50px] w-full rounded-md text-[0.78rem] font-bold uppercase tracking-[0.1em] ${
                       plan.featured ? "button-primary" : "plan-button"
                     }`}

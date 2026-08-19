@@ -9,7 +9,8 @@ import { useApp } from "../context/AppContext";
 import { gymInfo } from "../lib/site-content";
 
 export function Header() {
-  const { content, isArabic, theme, toggleTheme, toggleLanguage } = useApp();
+  const { content, isArabic, theme, toggleTheme, toggleLanguage, openBooking } =
+    useApp();
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
@@ -20,7 +21,6 @@ export function Header() {
     { href: "/#schedule", label: content.nav.schedule },
     { href: "/#coaches", label: content.nav.coaches },
     { href: "/#pricing", label: content.nav.pricing },
-    { href: "/#reviews", label: content.nav.reviews },
   ];
 
   const handleAnchorClick = (event, href, shouldCloseMenu = false) => {
@@ -110,13 +110,15 @@ export function Header() {
               )}
             </button>
 
-            <Link
-              href="/#pricing"
-              onClick={(event) => handleAnchorClick(event, "/#pricing")}
+            <button
+              type="button"
+              onClick={() =>
+                openBooking({ planName: content.booking.freeTrial })
+              }
               className="button-primary ml-2.5 min-h-[42px] rounded-md px-5 text-[0.78rem] font-bold uppercase tracking-[0.08em]"
             >
               {content.nav.join}
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Burger */}
@@ -205,13 +207,16 @@ export function Header() {
           </div>
 
           {/* CTA */}
-          <Link
-            href="/#pricing"
-            onClick={(event) => handleAnchorClick(event, "/#pricing", true)}
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              openBooking({ planName: content.booking.freeTrial });
+            }}
             className="button-primary mt-6 flex min-h-12 w-full items-center justify-center rounded-md text-sm font-bold uppercase tracking-[0.08em]"
           >
             {content.nav.join}
-          </Link>
+          </button>
         </div>
       </div>
     </>

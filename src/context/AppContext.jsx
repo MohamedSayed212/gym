@@ -1,13 +1,19 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { dictionary } from "../lib/site-content";
+import { LeadBookingModal } from "../components/LeadBookingModal";
 
 const AppContext = createContext(null);
 
 export function AppProvider({ children }) {
   const [isArabic, setIsArabic] = useState(false);
   const [theme, setTheme] = useState("dark");
+  // { planId?, planName?, className? } - null means the booking modal is closed
+  const [booking, setBooking] = useState(null);
+
+  const openBooking = useCallback((payload = {}) => setBooking(payload), []);
+  const closeBooking = useCallback(() => setBooking(null), []);
 
   useEffect(() => {
     const savedLanguage = window.localStorage.getItem("gym-language");
@@ -44,11 +50,19 @@ export function AppProvider({ children }) {
       content: dictionary[isArabic ? "ar" : "en"],
       toggleLanguage: () => setIsArabic((current) => !current),
       toggleTheme: () => setTheme((current) => (current === "dark" ? "light" : "dark")),
+      booking,
+      openBooking,
+      closeBooking,
     }),
-    [isArabic, theme],
+    [isArabic, theme, booking, openBooking, closeBooking],
   );
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={value}>
+      {children}
+      <LeadBookingModal />
+    </AppContext.Provider>
+  );
 }
 
 export function useApp() {

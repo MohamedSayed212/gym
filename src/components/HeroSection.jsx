@@ -3,7 +3,7 @@ import { ArrowDown } from "lucide-react";
 import { motion } from "../lib/motion";
 import { gymInfo } from "../lib/site-content";
 
-export function HeroSection({ content, isArabic }) {
+export function HeroSection({ content, isArabic, onBook }) {
   return (
     <section
       id="home"
@@ -53,12 +53,13 @@ export function HeroSection({ content, isArabic }) {
               isArabic ? "sm:flex-row-reverse" : ""
             }`}
           >
-            <a
-              href="#pricing"
+            <button
+              type="button"
+              onClick={() => onBook({ planName: content.booking.freeTrial })}
               className="button-primary hero-primary-button min-h-[52px] rounded-md px-8 text-[0.82rem] font-bold uppercase tracking-[0.1em] sm:min-h-[54px] sm:px-9 sm:text-sm"
             >
               {content.hero.primary}
-            </a>
+            </button>
             <a
               href="#about"
               className="hero-ghost-button group inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-md px-8 text-[0.82rem] font-bold uppercase tracking-[0.1em] sm:min-h-[54px] sm:px-9 sm:text-sm"

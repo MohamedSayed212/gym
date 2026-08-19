@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { Clock, Timer, User } from "lucide-react";
 import { motion } from "../lib/motion";
-import { classSchedule, classWhatsappLink, scheduleDays } from "../lib/site-content";
+import { classSchedule, scheduleDays } from "../lib/site-content";
 
-export function ScheduleSection({ content, language, isArabic }) {
+export function ScheduleSection({ content, language, isArabic, onBook }) {
   const [selectedDay, setSelectedDay] = useState("saturday");
 
   const classes = classSchedule[selectedDay] ?? [];
@@ -89,14 +89,15 @@ export function ScheduleSection({ content, language, isArabic }) {
                 </div>
               </dl>
 
-              <a
-                href={classWhatsappLink(item.name, dayLabel, item.time)}
-                target="_blank"
-                rel="noreferrer"
-                className="button-secondary mt-6 min-h-[44px] w-full px-5 text-sm font-semibold"
+              <button
+                type="button"
+                onClick={() =>
+                  onBook({ className: `${item.name} - ${dayLabel} ${item.time}` })
+                }
+                className="plan-button mt-6 min-h-[44px] w-full rounded-md px-5 text-[0.74rem] font-bold uppercase tracking-[0.08em]"
               >
                 {content.schedule.book}
-              </a>
+              </button>
             </article>
           ))}
         </div>

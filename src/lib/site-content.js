@@ -172,8 +172,65 @@ export const dictionary = {
       popular: "Most Popular",
       book: "Select Plan",
     },
+    promo: {
+      text: "Summer Launch Offer: First 20 Members get 20% OFF the 3-Month Plan + Free InBody Scan",
+      cta: "Claim Now",
+      dismiss: "Dismiss offer",
+      endsIn: "Ends in",
+      days: "D",
+      hours: "H",
+      minutes: "M",
+      seconds: "S",
+      expired: "Offer ended",
+    },
+    faq: {
+      eyebrow: "Questions",
+      title: "EVERYTHING YOU ASKED",
+      description:
+        "The things members ask at reception before signing up. If yours is not here, message us on WhatsApp.",
+      items: [
+        {
+          q: "What is included in the free trial?",
+          a: "A full training session on the floor with a coach, a quick InBody scan, and a walkthrough of the equipment. No card required and no obligation to subscribe.",
+        },
+        {
+          q: "Can I freeze my membership?",
+          a: "Yes. Three-month plans can be frozen for up to 2 weeks and annual plans for up to 6 weeks, for travel, injury or work. Just tell reception before the freeze starts.",
+        },
+        {
+          q: "Are ladies-only hours available?",
+          a: "Yes. The upper floor is ladies-only every day from 10:00 AM to 2:00 PM, with a female coach on duty during those hours.",
+        },
+        {
+          q: "Do you have parking?",
+          a: "Free street parking is available directly in front of the gym on El Nasr Road, plus a private garage two buildings away for annual members.",
+        },
+        {
+          q: "Can I pay in instalments?",
+          a: "Three-month and annual plans can be split into monthly cash instalments. Ask the team on WhatsApp and we will set the schedule for you.",
+        },
+        {
+          q: "Do I need experience to join a class?",
+          a: "No. Every class has a beginner track, and coaches scale the weights and movements to your level from your first session.",
+        },
+      ],
+    },
     booking: {
       title: "Reserve your membership",
+      planLabel: "Preferred plan or class",
+      planPlaceholder: "Choose what you want to book",
+      goalLabel: "Your main goal",
+      goals: {
+        fatLoss: "Fat Loss",
+        muscleGain: "Muscle Gain",
+        boxingHiit: "Boxing / HIIT",
+        general: "General Fitness",
+      },
+      whatsappSubmit: "Confirm & Chat on WhatsApp",
+      saveSubmit: "Just save my booking",
+      toastTitle: "Booking Confirmed!",
+      toastText: "Coach will contact you within 15 minutes.",
+      freeTrial: "Free Trial Session",
       packageLabel: "Selected package",
       nameLabel: "Full name",
       namePlaceholder: "Enter your full name",
@@ -361,8 +418,65 @@ export const dictionary = {
       popular: "الأكثر طلباً",
       book: "اختر هذه الباقة",
     },
+    promo: {
+      text: "عرض الافتتاح: أول 20 عضو يحصلون على خصم 20% على باقة 3 شهور + فحص InBody مجاناً",
+      cta: "احجز العرض",
+      dismiss: "إغلاق العرض",
+      endsIn: "ينتهي خلال",
+      days: "ي",
+      hours: "س",
+      minutes: "د",
+      seconds: "ث",
+      expired: "انتهى العرض",
+    },
+    faq: {
+      eyebrow: "أسئلة شائعة",
+      title: "كل ما تريد معرفته",
+      description:
+        "أكثر الأسئلة التي يطرحها المشتركون قبل الانضمام. إذا لم تجد سؤالك، تواصل معنا عبر واتساب.",
+      items: [
+        {
+          q: "ما الذي تشمله الجلسة التجريبية المجانية؟",
+          a: "جلسة تدريب كاملة داخل الصالة بإشراف مدرب، وفحص سريع لنسبة الدهون InBody، وجولة تعريفية على الأجهزة. بدون أي رسوم أو التزام بالاشتراك.",
+        },
+        {
+          q: "هل يمكنني تجميد اشتراكي؟",
+          a: "نعم. يمكن تجميد باقة الثلاثة شهور حتى أسبوعين، والباقة السنوية حتى 6 أسابيع، في حالات السفر أو الإصابة أو ظروف العمل. فقط أبلغ الاستقبال قبل بدء التجميد.",
+        },
+        {
+          q: "هل توجد أوقات مخصصة للسيدات؟",
+          a: "نعم. الدور العلوي مخصص للسيدات يومياً من 10:00 صباحاً حتى 2:00 ظهراً، مع تواجد مدربة متخصصة طوال هذه الفترة.",
+        },
+        {
+          q: "هل يتوفر مكان لركن السيارات؟",
+          a: "يتوفر ركن مجاني في الشارع أمام الصالة مباشرة على طريق النصر، بالإضافة إلى جراج خاص على بعد مبنيين لأعضاء الباقة السنوية.",
+        },
+        {
+          q: "هل يمكن الدفع على أقساط؟",
+          a: "يمكن تقسيم باقة الثلاثة شهور والباقة السنوية على دفعات شهرية نقدية. تواصل مع الفريق عبر واتساب وسنحدد لك جدول السداد المناسب.",
+        },
+        {
+          q: "هل أحتاج خبرة سابقة للانضمام للكلاسات؟",
+          a: "لا. كل كلاس يحتوي على مستوى مخصص للمبتدئين، ويقوم المدربون بضبط الأوزان والحركات حسب مستواك من الجلسة الأولى.",
+        },
+      ],
+    },
     booking: {
       title: "تأكيد اشتراكك",
+      planLabel: "الباقة أو الكلاس المطلوب",
+      planPlaceholder: "اختر ما ترغب في حجزه",
+      goalLabel: "هدفك الأساسي",
+      goals: {
+        fatLoss: "حرق الدهون",
+        muscleGain: "بناء العضلات",
+        boxingHiit: "ملاكمة / HIIT",
+        general: "لياقة عامة",
+      },
+      whatsappSubmit: "تأكيد ومتابعة على واتساب",
+      saveSubmit: "احفظ الحجز فقط",
+      toastTitle: "تم تأكيد الحجز!",
+      toastText: "سيتواصل معك الكابتن خلال 15 دقيقة.",
+      freeTrial: "جلسة تجريبية مجانية",
       packageLabel: "الباقة المختارة",
       nameLabel: "الاسم بالكامل",
       namePlaceholder: "اكتب اسمك ثلاثي",

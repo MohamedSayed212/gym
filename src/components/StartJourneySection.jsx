@@ -2,7 +2,7 @@ import { CheckCircle2, MessageCircle, Sparkles } from "lucide-react";
 import { motion } from "../lib/motion";
 import { gymInfo } from "../lib/site-content";
 
-export function StartJourneySection({ content, isArabic }) {
+export function StartJourneySection({ content, isArabic, onBook }) {
   return (
     <section className="section-dark scroll-rise border-t border-fitness-border py-24 sm:py-28">
       <motion.div
@@ -27,10 +27,14 @@ export function StartJourneySection({ content, isArabic }) {
                   isArabic ? "justify-end" : "justify-start"
                 }`}
               >
-                <a href="#pricing" className="button-primary min-h-[48px] px-6 text-sm font-bold">
+                <button
+                  type="button"
+                  onClick={() => onBook({ planName: content.booking.freeTrial })}
+                  className="button-primary min-h-[48px] rounded-md px-6 text-[0.78rem] font-bold uppercase tracking-[0.08em]"
+                >
                   <Sparkles className="h-4 w-4" aria-hidden="true" />
                   {content.journey.primaryCta}
-                </a>
+                </button>
                 <a
                   href={gymInfo.whatsappLink}
                   target="_blank"
