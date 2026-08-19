@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { ArrowDown, CalendarCheck, MessageCircle } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { motion } from "../lib/motion";
-import { gymInfo, trialWhatsappLink } from "../lib/site-content";
+import { gymInfo } from "../lib/site-content";
 
 export function HeroSection({ content, isArabic }) {
   return (
@@ -55,46 +55,41 @@ export function HeroSection({ content, isArabic }) {
           >
             <a
               href="#pricing"
-              className="button-primary hero-primary-button min-h-[52px] px-7 text-sm font-semibold sm:min-h-[54px] sm:px-8 sm:text-base"
+              className="button-primary hero-primary-button min-h-[52px] rounded-md px-8 text-[0.82rem] font-bold uppercase tracking-[0.1em] sm:min-h-[54px] sm:px-9 sm:text-sm"
             >
-              <CalendarCheck className="h-4.5 w-4.5" aria-hidden="true" />
               {content.hero.primary}
             </a>
             <a
-              href={trialWhatsappLink}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md border border-emerald-400/50 bg-emerald-500 px-7 text-sm font-semibold text-white shadow-[0_10px_28px_rgba(16,185,129,0.28)] transition hover:-translate-y-0.5 hover:bg-emerald-400 sm:min-h-[54px] sm:px-8 sm:text-base"
-            >
-              <MessageCircle className="h-4 w-4" aria-hidden="true" />
-              {content.hero.whatsapp}
-            </a>
-            <a
               href="#about"
-              className="hero-secondary-button-clean inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md px-7 text-sm font-semibold text-white transition sm:min-h-[54px] sm:px-8 sm:text-base"
+              className="hero-ghost-button group inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-md px-8 text-[0.82rem] font-bold uppercase tracking-[0.1em] sm:min-h-[54px] sm:px-9 sm:text-sm"
             >
-              <ArrowDown className="h-4 w-4" aria-hidden="true" />
               {content.hero.secondary}
+              <ArrowDown
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5"
+                aria-hidden="true"
+              />
             </a>
           </div>
 
-          <div className="grid w-full grid-cols-3 gap-3 pt-2">
-            {content.hero.stats.map((stat) => (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -3 }}
+          <div
+            className={`hero-stat-strip mt-4 flex w-full flex-col gap-y-5 pt-7 sm:flex-row sm:items-center ${
+              isArabic ? "sm:flex-row-reverse" : ""
+            }`}
+          >
+            {content.hero.stats.map((stat, index) => (
+              <div
                 key={stat.label}
-                className="hero-stat-card-readable rounded-md border px-4 py-4"
+                className={`flex-1 ${index > 0 ? "hero-stat-divider" : ""} ${
+                  isArabic ? "text-right sm:pr-0" : "text-left"
+                }`}
               >
-                <div className="hero-stat-value text-2xl font-bold sm:text-[1.75rem]">
+                <div className="hero-stat-value text-[1.75rem] font-extrabold leading-none tracking-tight sm:text-[2rem]">
                   {stat.value}
                 </div>
-                <div className="hero-stat-label mt-1.5 text-xs leading-snug sm:text-sm">
+                <div className="hero-stat-label mt-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em]">
                   {stat.label}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

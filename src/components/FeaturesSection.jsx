@@ -1,37 +1,29 @@
 import Image from "next/image";
-import {
-  Clock3,
-  MapPin,
-  ShieldCheck,
-  Sparkles,
-  UsersRound,
-} from "lucide-react";
 import { motion } from "../lib/motion";
 import { gymInfo } from "../lib/site-content";
 
 export function FeaturesSection({ content, isArabic }) {
-  const details = [
+  const media = [
     {
-      icon: MapPin,
-      label: content.features.addressLabel,
-      text: gymInfo.address,
+      image: gymInfo.equipmentImage,
+      alt: "Iron Pulse Gym strength training floor",
+      title: content.features.equipmentTitle,
+      text: content.features.equipmentText,
+      index: "01",
     },
     {
-      icon: Clock3,
-      label: content.features.hoursLabel,
-      text: content.features.hours,
-    },
-    {
-      icon: UsersRound,
-      label: content.features.trainersLabel,
-      text: content.features.trainers,
+      image: gymInfo.trainerImage,
+      alt: "Coach guiding a member through a lift",
+      title: content.features.trainerTitle,
+      text: content.features.trainerText,
+      index: "02",
     },
   ];
 
   return (
     <section
       id="about"
-      className="section-light scroll-rise border-t border-fitness-border py-24 sm:py-32"
+      className="section-dark scroll-rise border-t border-fitness-border py-24 sm:py-32"
     >
       <motion.div
         initial={{ opacity: 0, y: 10 }}
@@ -39,115 +31,67 @@ export function FeaturesSection({ content, isArabic }) {
         transition={{ duration: 0.4 }}
         className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
       >
-        <div className="grid gap-16 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
-          {/* Left column — copy + info cards */}
-          <div
-            className={`space-y-10 ${isArabic ? "text-right lg:order-2" : "text-left"}`}
-          >
-            <div className="max-w-3xl space-y-4">
-              <p className="section-kicker">{content.features.eyebrow}</p>
-              <h2 className="section-title max-w-3xl">
-                {content.features.title}
-              </h2>
-              <p className="section-copy">
-                {content.features.description}
-              </p>
-            </div>
+        <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
+          {/* Left — editorial headline, copy, spec list */}
+          <div className={isArabic ? "text-right lg:order-2" : "text-left"}>
+            <p className="section-kicker">{content.features.eyebrow}</p>
 
-            <div className="grid gap-3 sm:grid-cols-2">
-              {details.map((item, index) => (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  key={item.label}
-                  className={`rounded-lg border border-fitness-border bg-fitness-card px-5 py-5 ${
-                    index === details.length - 1 ? "sm:col-span-2" : ""
+            <h2 className="editorial-title mt-5">{content.features.title}</h2>
+
+            <p className="section-copy mt-6">{content.features.description}</p>
+
+            <dl className="mt-10">
+              {content.features.specs.map((spec) => (
+                <div
+                  key={spec.label}
+                  className={`spec-row flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6 ${
+                    isArabic ? "sm:flex-row-reverse" : ""
                   }`}
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-md bg-fitness-soft text-fitness-orange">
-                    <item.icon className="h-4.5 w-4.5" aria-hidden="true" />
-                  </span>
-                  <div className="mt-4 space-y-2">
-                    <h3 className="text-sm font-bold uppercase tracking-wide text-fitness-subtle">
-                      {item.label}
-                    </h3>
-                    <div className="space-y-1 text-sm leading-relaxed text-fitness-text">
-                      {Array.isArray(item.text) ? (
-                        item.text.map((line) => <p key={line}>{line}</p>)
-                      ) : (
-                        <p>{item.text}</p>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
+                  <dt className="w-full text-[0.68rem] font-bold uppercase tracking-[0.16em] text-fitness-orange sm:w-40 sm:shrink-0">
+                    {spec.label}
+                  </dt>
+                  <dd className="text-sm leading-relaxed text-fitness-muted">
+                    {spec.value}
+                  </dd>
+                </div>
               ))}
-            </div>
+            </dl>
           </div>
 
-          {/* Right column — images */}
-          <div
-            className={`grid gap-4 sm:grid-cols-2 lg:pt-6 ${isArabic ? "lg:order-1" : ""}`}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="relative min-h-[360px] overflow-hidden rounded-lg border border-fitness-border sm:min-h-[540px]"
-            >
-              <Image
-                src={gymInfo.equipmentImage}
-                alt="Modern gym equipment and dumbbells"
-                fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/80 via-black/28 to-transparent" />
-              <div
-                className={`absolute inset-x-0 bottom-0 space-y-2 p-6 text-white ${isArabic ? "text-right" : "text-left"}`}
+          {/* Right — photography cards */}
+          <div className={`flex flex-col gap-4 ${isArabic ? "lg:order-1" : ""}`}>
+            {media.map((item) => (
+              <article
+                key={item.title}
+                className="media-card group relative min-h-[300px] flex-1 overflow-hidden rounded-2xl border border-fitness-border sm:min-h-[340px]"
               >
-                <ShieldCheck
-                  className={`h-6 w-6 text-fitness-orange ${isArabic ? "mr-0 ml-auto" : ""}`}
-                  aria-hidden="true"
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <h3 className="text-xl font-bold leading-snug">
-                  {content.features.equipmentTitle}
-                </h3>
-                <p className="max-w-sm text-[0.82rem] leading-relaxed text-white/76">
-                  {content.features.equipmentText}
-                </p>
-              </div>
-            </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent" />
 
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="relative min-h-[340px] overflow-hidden rounded-lg border border-fitness-border sm:mt-10 sm:min-h-[500px]"
-            >
-              <Image
-                src={gymInfo.trainerImage}
-                alt="Coach guiding a member during training"
-                fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/80 via-black/28 to-transparent" />
-              <div
-                className={`absolute inset-x-0 bottom-0 space-y-2 p-6 text-white ${isArabic ? "text-right" : "text-left"}`}
-              >
-                <Sparkles
-                  className={`h-6 w-6 text-fitness-orange ${isArabic ? "mr-0 ml-auto" : ""}`}
-                  aria-hidden="true"
-                />
-                <h3 className="text-xl font-bold leading-snug">
-                  {content.features.trainerTitle}
-                </h3>
-                <p className="max-w-sm text-[0.82rem] leading-relaxed text-white/76">
-                  {content.features.trainerText}
-                </p>
-              </div>
-            </motion.div>
+                <div
+                  className={`absolute inset-x-0 bottom-0 p-7 ${
+                    isArabic ? "text-right" : "text-left"
+                  }`}
+                >
+                  <span className="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-fitness-orange">
+                    {item.index}
+                  </span>
+                  <h3 className="mt-2 text-2xl font-extrabold uppercase tracking-tight text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 max-w-sm text-[0.82rem] leading-relaxed text-white/70">
+                    {item.text}
+                  </p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </motion.div>

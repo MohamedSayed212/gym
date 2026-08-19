@@ -89,17 +89,17 @@
 :root.dark {
   color-scheme: dark;
 
-  --fitness-bg-rgb: 11 11 12;
-  --fitness-card-rgb: 21 21 21;
+  --fitness-bg-rgb: 10 10 10;
+  --fitness-card-rgb: 18 18 18;
   --fitness-soft-rgb: 255 255 255;
   --fitness-input-rgb: 18 18 20;
-  --fitness-border-rgb: 38 38 38;
+  --fitness-border-rgb: 34 34 34;
   --fitness-text-rgb: 245 245 245;
   --fitness-muted-rgb: 161 161 170;
   --fitness-subtle-rgb: 113 113 122;
 
-  --fitness-orange-rgb: 232 93 4;
-  --fitness-orange-hover-rgb: 249 115 22;
+  --fitness-orange-rgb: 255 85 0;
+  --fitness-orange-hover-rgb: 255 110 26;
 
   --fitness-bg: rgb(var(--fitness-bg-rgb));
   --fitness-card: rgb(var(--fitness-card-rgb));
@@ -112,7 +112,7 @@
   --fitness-orange: rgb(var(--fitness-orange-rgb));
   --fitness-orange-hover: rgb(var(--fitness-orange-hover-rgb));
 
-  --fitness-nav: rgba(11, 11, 12, 0.88);
+  --fitness-nav: rgba(10, 10, 10, 0.8);
 
   --fitness-premium-shadow:
     0 4px 16px rgba(0, 0, 0, 0.28), 0 1px 4px rgba(0, 0, 0, 0.18);
@@ -122,11 +122,11 @@
 
   --fitness-orange-shadow: 0 4px 14px rgba(232, 93, 4, 0.08);
 
-  --fitness-surface-background: #0b0b0c;
-  --fitness-section-light-bg: #0f0f10;
-  --fitness-section-contrast-bg: #141414;
-  --fitness-section-dark-bg: #0b0b0c;
-  --fitness-section-band-bg: #111111;
+  --fitness-surface-background: #0a0a0a;
+  --fitness-section-light-bg: #101010;
+  --fitness-section-contrast-bg: #121212;
+  --fitness-section-dark-bg: #0a0a0a;
+  --fitness-section-band-bg: #121212;
 
   --fitness-modal-backdrop: rgba(0, 0, 0, 0.88);
 
@@ -298,22 +298,181 @@ html[lang="ar"] .section-copy {
     var(--fitness-card);
 }
 
-.pricing-featured-card {
-  background:
-    linear-gradient(160deg, #ffffff 0%, #fbfaf9 100%);
-  border: 1px solid rgba(232, 93, 4, 0.3);
-  box-shadow:
-    0 10px 34px rgba(232, 93, 4, 0.1),
-    0 2px 10px rgba(0, 0, 0, 0.06);
+/* EDITORIAL TYPE */
+
+.editorial-title {
+  font-size: clamp(2rem, 3.6vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  color: var(--fitness-text);
+  text-wrap: balance;
+}
+
+html[lang="ar"] .editorial-title {
+  font-size: clamp(1.7rem, 2.7vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.32;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* NAV */
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 100%;
+  background: var(--fitness-orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-ghost-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  color: var(--fitness-muted);
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+}
+
+.nav-ghost-button:hover {
+  background: var(--fitness-soft);
+  border-color: var(--fitness-border);
   color: var(--fitness-text);
 }
 
-.dark .pricing-featured-card {
-  background: linear-gradient(160deg, #1e1e1e 0%, #181818 100%);
-  border-color: #303030;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.36),
-    0 2px 8px rgba(0, 0, 0, 0.24);
+/* HERO — ghost CTA + metric strip */
+
+.hero-ghost-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 160ms ease;
+}
+
+.hero-ghost-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: translateY(-1px);
+}
+
+.hero-stat-strip {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.hero-stat-divider {
+  padding-left: 0;
+}
+
+@media (min-width: 640px) {
+  .hero-stat-divider {
+    padding-left: 2rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  html[lang="ar"] .hero-stat-divider {
+    padding-left: 0;
+    padding-right: 2rem;
+    border-left: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.14);
+  }
+}
+
+/* ABOUT — spec list + media cards */
+
+.spec-row {
+  border-top: 1px solid var(--fitness-border);
+}
+
+.spec-row:last-child {
+  border-bottom: 1px solid var(--fitness-border);
+}
+
+.media-card {
+  box-shadow: var(--fitness-premium-shadow);
+}
+
+/* PRICING — athletic plan cards */
+
+.plan-card {
+  background: var(--fitness-card);
+  border: 1px solid var(--fitness-border);
+  transition:
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    transform 240ms ease;
+}
+
+.plan-card:hover {
+  border-color: rgb(var(--fitness-orange-rgb) / 0.5);
+  box-shadow: 0 12px 40px rgb(var(--fitness-orange-rgb) / 0.08);
+}
+
+.plan-card-featured {
+  border-color: rgb(var(--fitness-orange-rgb) / 0.4);
+  box-shadow: 0 14px 44px rgb(var(--fitness-orange-rgb) / 0.12);
+}
+
+.plan-card-featured::before {
+  content: "";
+  position: absolute;
+  inset-inline: 1.5rem;
+  top: -1px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--fitness-orange);
+  box-shadow: 0 0 18px 2px rgb(var(--fitness-orange-rgb) / 0.55);
+}
+
+.plan-card-featured:hover {
+  border-color: rgb(var(--fitness-orange-rgb) / 0.6);
+  box-shadow: 0 18px 52px rgb(var(--fitness-orange-rgb) / 0.18);
+}
+
+.plan-badge {
+  background: var(--fitness-orange);
+  box-shadow: 0 4px 14px rgb(var(--fitness-orange-rgb) / 0.4);
+}
+
+.plan-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--fitness-border);
+  color: var(--fitness-text);
+  transition:
+    border-color 200ms ease,
+    background 200ms ease,
+    color 200ms ease;
+}
+
+.plan-button:hover {
+  border-color: var(--fitness-orange);
+  background: rgb(var(--fitness-orange-rgb) / 0.08);
+  color: var(--fitness-orange);
 }
 
 .premium-card-hover {

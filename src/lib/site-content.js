@@ -11,9 +11,9 @@ export const gymInfo = {
   heroImage:
     "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1600&auto=format&fit=crop",
   equipmentImage:
-    "https://images.unsplash.com/photo-1637666062717-1c6bcfa4a4df?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1637666062717-1c6bcfa4a4df?q=80&w=1200&auto=format&fit=crop",
   trainerImage:
-    "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1200&auto=format&fit=crop",
 };
 
 export const packages = [
@@ -106,7 +106,7 @@ export const dictionary = {
       pricing: "Pricing",
       reviews: "Reviews",
       admin: "Admin",
-      join: "Free Trial",
+      join: "Book Free Pass",
       language: "Arabic",
       theme: "Toggle theme",
       whatsapp: "WhatsApp",
@@ -116,35 +116,37 @@ export const dictionary = {
       title: "Train In A Space Built For Real Results.",
       subtitle:
         "A premium training floor with expert coaching, modern equipment, and flexible memberships that fit your weekly rhythm.",
-      primary: "Book Free Trial",
-      secondary: "See The Gym",
-      whatsapp: "Book via WhatsApp",
+      primary: "Claim Free Pass",
+      secondary: "Explore Floor",
       stats: [
-        { value: "24+", label: "Strength stations" },
-        { value: "6", label: "Certified coaches" },
-        { value: "06:00", label: "Daily opening" },
+        { value: "24+", label: "Strength Stations" },
+        { value: "6", label: "Elite Coaches" },
+        { value: "06:00 AM", label: "Daily Opening" },
       ],
     },
     features: {
-      eyebrow: "Everything under one roof",
-      title: "Built for results, not just check-ins.",
+      eyebrow: "The Facility",
+      title: "BUILT FOR PERFORMANCE",
       description:
-        "From beginners to advanced lifters, our team helps you train with proper form, structured progress, and consistent follow-up.",
-      addressLabel: "Location",
+        "This is not a room full of machines. It is a training floor engineered around how strong bodies are actually built - heavy compound work, precise coaching, and enough space to move without waiting.",
+      specs: [
+        { label: "Training Floor", value: "740 sqm of open, column-free strength space" },
+        { label: "Equipment", value: "Eleiko platforms, calibrated plates, full cable systems" },
+        { label: "Coaching", value: "Certified coaches on the floor every peak hour" },
+        { label: "Hours", value: "Sat-Thu 6:00 AM - 12:00 AM  |  Fri 2:00 PM - 10:00 PM" },
+        { label: "Location", value: "18 El Nasr Road, New Maadi, Cairo" },
+      ],
       hoursLabel: "Working hours",
       hours: [
         "Saturday - Thursday: 6:00 AM - 12:00 AM",
         "Friday: 2:00 PM - 10:00 PM",
       ],
-      trainersLabel: "Coaching team",
-      trainers:
-        "Certified strength and body-recomposition coaches available across all peak hours.",
-      equipmentTitle: "Modern equipment",
+      equipmentTitle: "The Floor",
       equipmentText:
-        "Commercial machines, free weights, cables, cardio, and recovery-ready layout.",
-      trainerTitle: "Coached sessions",
+        "Commercial-grade racks, free weights, and conditioning zones built for real training volume.",
+      trainerTitle: "The Coaching",
       trainerText:
-        "Practical form correction, personalized plans, and measurable progress tracking.",
+        "Form corrected in real time, programming that progresses, and follow-up that keeps you honest.",
     },
     schedule: {
       eyebrow: "Weekly timetable",
@@ -167,9 +169,8 @@ export const dictionary = {
       title: "Choose your plan and start this week.",
       description:
         "Book your preferred membership now. Our team confirms your trial or package and helps you begin fast.",
-      popular: "Most booked",
-      book: "Reserve This Plan",
-      whatsapp: "Book via WhatsApp",
+      popular: "Most Popular",
+      book: "Select Plan",
     },
     booking: {
       title: "Reserve your membership",
@@ -294,7 +295,7 @@ export const dictionary = {
       pricing: "الأسعار",
       reviews: "الآراء",
       admin: "الإدارة",
-      join: "حصة مجانية",
+      join: "احجز دخول مجاني",
       language: "English",
       theme: "تبديل المظهر",
       whatsapp: "واتساب",
@@ -304,35 +305,37 @@ export const dictionary = {
       title: "اتمرن في مكان معمول لنتيجتك.",
       subtitle:
         "مساحة تدريب بريميوم، كباتن فاهمة، وأجهزة حديثة تساعدك تبني جسم قوي بخطة واضحة تناسب يومك.",
-      primary: "احجز حصة مجانية",
-      secondary: "شوف الجيم",
-      whatsapp: "احجز على واتساب",
+      primary: "احجز دخولك المجاني",
+      secondary: "استكشف الجيم",
       stats: [
         { value: "+24", label: "محطة قوة" },
-        { value: "6", label: "كباتن معتمدين" },
-        { value: "06:00", label: "الافتتاح يوميًا" },
+        { value: "6", label: "كباتن محترفين" },
+        { value: "06:00 ص", label: "الافتتاح يوميًا" },
       ],
     },
     features: {
-      eyebrow: "كل اللي محتاجه في مكان واحد",
-      title: "جيم معمول للنتيجة مش للمنظر.",
+      eyebrow: "المكان",
+      title: "مبني علشان الأداء",
       description:
-        "سواء لسه بتبدأ أو بقالك فترة، هنمشي معاك بخطة واضحة، تكنيك صح، ومتابعة مستمرة.",
-      addressLabel: "العنوان",
+        "ده مش مجرد مكان فيه أجهزة. ده فلور تدريب متصمم على أساس إزاي الأجسام القوية بتتبني فعلاً - تمارين مركبة تقيلة، كوتشينج دقيق، ومساحة تتحرك فيها من غير انتظار.",
+      specs: [
+        { label: "مساحة التدريب", value: "740 متر مربع مفتوحة بدون أعمدة" },
+        { label: "الأجهزة", value: "منصات Eleiko، أوزان معايرة، وأنظمة كابلات كاملة" },
+        { label: "الكوتشينج", value: "كباتن معتمدين على الفلور في كل أوقات الذروة" },
+        { label: "المواعيد", value: "السبت-الخميس 6 ص - 12 م  |  الجمعة 2 م - 10 م" },
+        { label: "العنوان", value: "18 طريق النصر، المعادي الجديدة، القاهرة" },
+      ],
       hoursLabel: "مواعيد العمل",
       hours: [
         "السبت - الخميس: 6:00 صباحًا - 12:00 منتصف الليل",
         "الجمعة: 2:00 مساءً - 10:00 مساءً",
       ],
-      trainersLabel: "فريق الكوتشينج",
-      trainers:
-        "كباتن معتمدين في القوة وخسارة الدهون وبناء الجسم، متواجدين يوميًا في أوقات الزحمة.",
-      equipmentTitle: "أجهزة حديثة",
+      equipmentTitle: "الفلور",
       equipmentText:
-        "أوزان حرة، أجهزة مقاومة، كابلات، كارديو، ومساحات مريحة للتمرين.",
-      trainerTitle: "متابعة مع الكابتن",
+        "راكات احترافية، أوزان حرة، ومناطق لياقة معمولة لحجم تدريب حقيقي.",
+      trainerTitle: "الكوتشينج",
       trainerText:
-        "تصحيح تكنيك، خطط تدريب مناسبة، ومتابعة تقدمك بشكل عملي وواضح.",
+        "تصحيح تكنيك لحظي، برنامج بيتدرج معاك، ومتابعة تخليك ملتزم.",
     },
     schedule: {
       eyebrow: "جدول الأسبوع",
@@ -356,8 +359,7 @@ export const dictionary = {
       description:
         "احجز الباقة اللي تناسبك، وفريقنا بيتواصل معاك فورًا لتأكيد البداية أو الحصة التجريبية.",
       popular: "الأكثر اختيارًا",
-      book: "احجز الباقة",
-      whatsapp: "احجز على واتساب",
+      book: "اختر الباقة",
     },
     booking: {
       title: "احجز اشتراكك",

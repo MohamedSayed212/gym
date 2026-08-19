@@ -53,25 +53,25 @@ export function Header() {
   return (
     <>
       <header className="nav-shell sticky inset-x-0 top-0 z-50 border-b border-fitness-border backdrop-blur-xl">
-        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto grid h-[72px] max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-6 px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <Link
             href="/#home"
             onClick={(event) => handleAnchorClick(event, "/#home")}
             className="flex items-center gap-3"
           >
-            <span className="button-primary flex h-10 w-10 items-center justify-center p-0">
-              <Dumbbell className="h-4 w-4" />
+            <span className="flex h-9 w-9 items-center justify-center rounded-md bg-fitness-orange p-0 text-white">
+              <Dumbbell className="h-[18px] w-[18px]" />
             </span>
 
-            <span className="text-lg font-extrabold text-fitness-text sm:text-xl">
+            <span className="text-[1.05rem] font-extrabold uppercase leading-none tracking-[-0.01em] text-fitness-text sm:text-[1.15rem]">
               {gymInfo.name}
             </span>
           </Link>
 
           {/* Desktop Nav */}
           <nav
-            className={`hidden items-center gap-1.5 lg:flex ${
+            className={`hidden items-center justify-center gap-8 lg:flex ${
               isArabic ? "lg:flex-row-reverse" : ""
             }`}
           >
@@ -80,7 +80,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={(event) => handleAnchorClick(event, item.href)}
-                className="rounded-xl px-3.5 py-2 text-sm font-semibold text-fitness-muted transition hover:bg-fitness-soft hover:text-fitness-text"
+                className="nav-link text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-fitness-muted transition-colors hover:text-fitness-text"
               >
                 {item.label}
               </Link>
@@ -88,13 +88,21 @@ export function Header() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden items-center gap-2.5 lg:flex">
-            <button onClick={toggleLanguage} className="icon-button h-11 gap-2 px-4 text-sm font-semibold">
-              <Languages className="h-4 w-4" />
+          <div className="hidden items-center justify-end gap-1.5 lg:flex">
+            <button
+              onClick={toggleLanguage}
+              aria-label={content.nav.language}
+              className="nav-ghost-button h-9 gap-1.5 px-2.5 text-[0.72rem] font-bold uppercase tracking-[0.1em]"
+            >
+              <Languages className="h-3.5 w-3.5" />
               <span>{isArabic ? "EN" : "AR"}</span>
             </button>
 
-            <button onClick={toggleTheme} className="icon-button h-11 w-11 p-0">
+            <button
+              onClick={toggleTheme}
+              aria-label={content.nav.theme}
+              className="nav-ghost-button h-9 w-9 p-0"
+            >
               {theme === "dark" ? (
                 <Sun className="h-4 w-4" />
               ) : (
@@ -105,7 +113,7 @@ export function Header() {
             <Link
               href="/#pricing"
               onClick={(event) => handleAnchorClick(event, "/#pricing")}
-              className="button-primary min-h-11 px-5 text-sm font-bold"
+              className="button-primary ml-2.5 min-h-[42px] rounded-md px-5 text-[0.78rem] font-bold uppercase tracking-[0.08em]"
             >
               {content.nav.join}
             </Link>
@@ -114,7 +122,8 @@ export function Header() {
           {/* Mobile Burger */}
           <button
             onClick={() => setOpen(true)}
-            className="icon-button flex h-11 w-11 items-center justify-center p-0 lg:hidden"
+            aria-label="Open menu"
+            className="nav-ghost-button col-start-3 ml-auto flex h-10 w-10 items-center justify-center p-0 lg:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -166,7 +175,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={(event) => handleAnchorClick(event, item.href, true)}
-                className="rounded-xl px-4 py-3 text-base font-semibold text-fitness-text transition hover:bg-fitness-soft"
+                className="rounded-md px-4 py-3 text-sm font-bold uppercase tracking-[0.1em] text-fitness-text transition hover:bg-fitness-soft"
               >
                 {item.label}
               </Link>
@@ -199,7 +208,7 @@ export function Header() {
           <Link
             href="/#pricing"
             onClick={(event) => handleAnchorClick(event, "/#pricing", true)}
-            className="button-primary mt-6 flex min-h-12 w-full items-center justify-center text-sm font-bold"
+            className="button-primary mt-6 flex min-h-12 w-full items-center justify-center rounded-md text-sm font-bold uppercase tracking-[0.08em]"
           >
             {content.nav.join}
           </Link>
