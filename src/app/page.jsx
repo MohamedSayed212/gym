@@ -2,12 +2,14 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { BookingModal } from "../components/BookingModal";
+import { CoachesSection } from "../components/CoachesSection";
 import { FeaturesSection } from "../components/FeaturesSection";
 import { FloatingWhatsAppButton } from "../components/FloatingWhatsAppButton";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { HeroSection } from "../components/HeroSection";
 import { PricingSection } from "../components/PricingSection";
+import { ScheduleSection } from "../components/ScheduleSection";
 import { StartJourneySection } from "../components/StartJourneySection";
 import { TestimonialsSection } from "../components/TestimonialsSection";
 import { useApp } from "../context/AppContext";
@@ -52,6 +54,8 @@ export default function HomePage() {
       <main>
         <HeroSection content={content} isArabic={isArabic} />
         <FeaturesSection content={content} isArabic={isArabic} />
+        <ScheduleSection content={content} language={language} isArabic={isArabic} />
+        <CoachesSection content={content} language={language} isArabic={isArabic} />
         <PricingSection
           content={content}
           language={language}

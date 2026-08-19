@@ -101,6 +101,8 @@ export const dictionary = {
     nav: {
       home: "Home",
       about: "About",
+      schedule: "Classes",
+      coaches: "Coaches",
       pricing: "Pricing",
       reviews: "Reviews",
       admin: "Admin",
@@ -116,6 +118,7 @@ export const dictionary = {
         "A premium training floor with expert coaching, modern equipment, and flexible memberships that fit your weekly rhythm.",
       primary: "Book Free Trial",
       secondary: "See The Gym",
+      whatsapp: "Book via WhatsApp",
       stats: [
         { value: "24+", label: "Strength stations" },
         { value: "6", label: "Certified coaches" },
@@ -143,6 +146,22 @@ export const dictionary = {
       trainerText:
         "Practical form correction, personalized plans, and measurable progress tracking.",
     },
+    schedule: {
+      eyebrow: "Weekly timetable",
+      title: "Class Schedule",
+      description:
+        "Pick your day, find the class that fits your routine, and reserve your spot in seconds.",
+      minutes: "min",
+      coachLabel: "with",
+      book: "Book Spot",
+      empty: "No classes scheduled for this day.",
+    },
+    coaches: {
+      eyebrow: "Coaching team",
+      title: "Meet Our Coaches",
+      description:
+        "Certified coaches on the floor every day to correct your form and keep your plan on track.",
+    },
     pricing: {
       eyebrow: "Flexible memberships",
       title: "Choose your plan and start this week.",
@@ -150,6 +169,7 @@ export const dictionary = {
         "Book your preferred membership now. Our team confirms your trial or package and helps you begin fast.",
       popular: "Most booked",
       book: "Reserve This Plan",
+      whatsapp: "Book via WhatsApp",
     },
     booking: {
       title: "Reserve your membership",
@@ -269,6 +289,8 @@ export const dictionary = {
     nav: {
       home: "الرئيسية",
       about: "عن الجيم",
+      schedule: "الحصص",
+      coaches: "الكباتن",
       pricing: "الأسعار",
       reviews: "الآراء",
       admin: "الإدارة",
@@ -284,6 +306,7 @@ export const dictionary = {
         "مساحة تدريب بريميوم، كباتن فاهمة، وأجهزة حديثة تساعدك تبني جسم قوي بخطة واضحة تناسب يومك.",
       primary: "احجز حصة مجانية",
       secondary: "شوف الجيم",
+      whatsapp: "احجز على واتساب",
       stats: [
         { value: "+24", label: "محطة قوة" },
         { value: "6", label: "كباتن معتمدين" },
@@ -311,6 +334,22 @@ export const dictionary = {
       trainerText:
         "تصحيح تكنيك، خطط تدريب مناسبة، ومتابعة تقدمك بشكل عملي وواضح.",
     },
+    schedule: {
+      eyebrow: "جدول الأسبوع",
+      title: "جدول الحصص",
+      description:
+        "اختار يومك، شوف الحصة اللي تناسب وقتك، واحجز مكانك في ثواني.",
+      minutes: "دقيقة",
+      coachLabel: "مع",
+      book: "احجز مكانك",
+      empty: "مفيش حصص في اليوم ده.",
+    },
+    coaches: {
+      eyebrow: "فريق الكباتن",
+      title: "تعرّف على كباتننا",
+      description:
+        "كباتن معتمدين موجودين يوميًا لتصحيح التكنيك ومتابعة خطتك خطوة بخطوة.",
+    },
     pricing: {
       eyebrow: "باقات مرنة",
       title: "اختار الباقة المناسبة وابدأ من الأسبوع ده.",
@@ -318,6 +357,7 @@ export const dictionary = {
         "احجز الباقة اللي تناسبك، وفريقنا بيتواصل معاك فورًا لتأكيد البداية أو الحصة التجريبية.",
       popular: "الأكثر اختيارًا",
       book: "احجز الباقة",
+      whatsapp: "احجز على واتساب",
     },
     booking: {
       title: "احجز اشتراكك",
@@ -433,3 +473,108 @@ export const dictionary = {
     },
   },
 };
+
+export const trialWhatsappLink = `https://wa.me/${gymInfo.whatsappNumber}?text=${encodeURIComponent(
+  "Hi Iron Pulse Gym, I want to claim my Free Trial",
+)}`;
+
+export const classWhatsappLink = (className, day, time) =>
+  `https://wa.me/${gymInfo.whatsappNumber}?text=${encodeURIComponent(
+    `Hi Iron Pulse Gym, I want to book a spot in ${className} on ${day} at ${time}.`,
+  )}`;
+
+export const scheduleDays = [
+  { id: "saturday", en: "Saturday", ar: "السبت" },
+  { id: "sunday", en: "Sunday", ar: "الأحد" },
+  { id: "monday", en: "Monday", ar: "الاثنين" },
+  { id: "tuesday", en: "Tuesday", ar: "الثلاثاء" },
+  { id: "wednesday", en: "Wednesday", ar: "الأربعاء" },
+  { id: "thursday", en: "Thursday", ar: "الخميس" },
+];
+
+export const classSchedule = {
+  saturday: [
+    { name: "CrossFit", time: "07:00 AM", duration: 60, coach: { en: "Coach Ahmed", ar: "كابتن أحمد" } },
+    { name: "HIIT", time: "06:00 PM", duration: 45, coach: { en: "Coach Sarah", ar: "كابتن سارة" } },
+    { name: "Boxing", time: "08:00 PM", duration: 60, coach: { en: "Coach Tarek", ar: "كابتن طارق" } },
+  ],
+  sunday: [
+    { name: "Strength", time: "08:00 AM", duration: 60, coach: { en: "Coach Ahmed", ar: "كابتن أحمد" } },
+    { name: "Yoga", time: "05:00 PM", duration: 50, coach: { en: "Coach Sarah", ar: "كابتن سارة" } },
+    { name: "CrossFit", time: "07:00 PM", duration: 60, coach: { en: "Coach Tarek", ar: "كابتن طارق" } },
+  ],
+  monday: [
+    { name: "HIIT", time: "07:00 AM", duration: 45, coach: { en: "Coach Sarah", ar: "كابتن سارة" } },
+    { name: "Strength", time: "06:00 PM", duration: 60, coach: { en: "Coach Ahmed", ar: "كابتن أحمد" } },
+    { name: "Boxing", time: "09:00 PM", duration: 60, coach: { en: "Coach Tarek", ar: "كابتن طارق" } },
+  ],
+  tuesday: [
+    { name: "CrossFit", time: "07:00 AM", duration: 60, coach: { en: "Coach Tarek", ar: "كابتن طارق" } },
+    { name: "Yoga", time: "05:30 PM", duration: 50, coach: { en: "Coach Sarah", ar: "كابتن سارة" } },
+    { name: "Strength", time: "07:30 PM", duration: 60, coach: { en: "Coach Ahmed", ar: "كابتن أحمد" } },
+  ],
+  wednesday: [
+    { name: "Strength", time: "08:00 AM", duration: 60, coach: { en: "Coach Ahmed", ar: "كابتن أحمد" } },
+    { name: "HIIT", time: "06:00 PM", duration: 45, coach: { en: "Coach Sarah", ar: "كابتن سارة" } },
+    { name: "Boxing", time: "08:00 PM", duration: 60, coach: { en: "Coach Tarek", ar: "كابتن طارق" } },
+  ],
+  thursday: [
+    { name: "CrossFit", time: "07:00 AM", duration: 60, coach: { en: "Coach Tarek", ar: "كابتن طارق" } },
+    { name: "Strength", time: "06:00 PM", duration: 60, coach: { en: "Coach Ahmed", ar: "كابتن أحمد" } },
+    { name: "Yoga", time: "08:00 PM", duration: 50, coach: { en: "Coach Sarah", ar: "كابتن سارة" } },
+  ],
+};
+
+export const coaches = [
+  {
+    id: "ahmed",
+    image:
+      "https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=800&auto=format&fit=crop",
+    en: {
+      name: "Coach Ahmed",
+      role: "Head Strength Coach",
+      bio: "Builds heavy, safe strength programs that keep members progressing week after week.",
+      badge: "ISSA Certified • 7+ Years Exp",
+    },
+    ar: {
+      name: "كابتن أحمد",
+      role: "مدرب القوة الأول",
+      bio: "بيبني برامج قوة آمنة وتدريجية تخلي تقدمك واضح كل أسبوع.",
+      badge: "معتمد ISSA • خبرة +7 سنين",
+    },
+  },
+  {
+    id: "sarah",
+    image:
+      "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=800&auto=format&fit=crop",
+    en: {
+      name: "Coach Sarah",
+      role: "Functional & HIIT",
+      bio: "Turns short, focused sessions into real fat loss and everyday conditioning.",
+      badge: "NASM Certified • 5+ Years Exp",
+    },
+    ar: {
+      name: "كابتن سارة",
+      role: "تدريب وظيفي و HIIT",
+      bio: "بتحوّل الحصص القصيرة لنتيجة حقيقية في خسارة الدهون واللياقة.",
+      badge: "معتمدة NASM • خبرة +5 سنين",
+    },
+  },
+  {
+    id: "tarek",
+    image:
+      "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=800&auto=format&fit=crop",
+    en: {
+      name: "Coach Tarek",
+      role: "Boxing & Conditioning",
+      bio: "Coaches technique-first boxing rounds that build speed, power, and stamina.",
+      badge: "IBA Licensed • 9+ Years Exp",
+    },
+    ar: {
+      name: "كابتن طارق",
+      role: "بوكس ولياقة",
+      bio: "بيركز على التكنيك الأول في البوكس لبناء سرعة وقوة ونفس طويل.",
+      badge: "مرخص IBA • خبرة +9 سنين",
+    },
+  },
+];

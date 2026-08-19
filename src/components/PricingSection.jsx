@@ -1,5 +1,5 @@
-import { Check, Flame, Ticket } from "lucide-react";
-import { packages } from "../lib/site-content";
+import { Check, Flame, MessageCircle, Ticket } from "lucide-react";
+import { packages, trialWhatsappLink } from "../lib/site-content";
 import { motion } from "../lib/motion";
 
 export function PricingSection({ content, language, isArabic, onBook }) {
@@ -29,14 +29,9 @@ export function PricingSection({ content, language, isArabic, onBook }) {
                   transition={{ duration: 0.4 }}
                   whileHover={{ y: -5 }}
                   key={plan.id}
-                  className={`relative flex h-full flex-col overflow-hidden rounded-lg px-7 py-8 transition lg:-translate-y-2 lg:py-9 ${
+                  className={`pricing-featured-card relative flex h-full flex-col overflow-hidden rounded-lg px-7 py-8 transition lg:-translate-y-2 lg:py-9 ${
                     isArabic ? "text-right" : "text-left"
                   }`}
-                  style={{
-                    background: "linear-gradient(160deg, #1e1e1e 0%, #181818 100%)",
-                    border: "1px solid #303030",
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.36), 0 2px 8px rgba(0,0,0,0.24)",
-                  }}
                 >
                   {/* Top accent bar */}
                   <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#E85D04] via-[#F97316] to-[#E85D04]" />
@@ -83,15 +78,25 @@ export function PricingSection({ content, language, isArabic, onBook }) {
                     ))}
                   </ul>
 
-                  <button
-                    type="button"
-                    onClick={() => onBook(plan)}
-                    className="button-primary mt-auto pt-7 min-h-[48px] w-full px-5 text-sm font-bold"
-                    style={{ marginTop: "auto", paddingTop: 0 }}
-                  >
-                    <Ticket className="h-4 w-4" aria-hidden="true" />
-                    {content.pricing.book}
-                  </button>
+                  <div className="mt-auto pt-7">
+                    <button
+                      type="button"
+                      onClick={() => onBook(plan)}
+                      className="button-primary min-h-[48px] w-full px-5 text-sm font-bold"
+                    >
+                      <Ticket className="h-4 w-4" aria-hidden="true" />
+                      {content.pricing.book}
+                    </button>
+                    <a
+                      href={trialWhatsappLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-3 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-5 text-sm font-semibold text-emerald-600 transition hover:bg-emerald-500/20 dark:border-emerald-400/40 dark:text-emerald-400"
+                    >
+                      <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                      {content.pricing.whatsapp}
+                    </a>
+                  </div>
                 </motion.article>
               );
             }
@@ -155,6 +160,15 @@ export function PricingSection({ content, language, isArabic, onBook }) {
                     <Ticket className="h-4 w-4" aria-hidden="true" />
                     {content.pricing.book}
                   </button>
+                  <a
+                    href={trialWhatsappLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-md border border-emerald-400/40 bg-emerald-500/10 px-5 text-sm font-semibold text-emerald-400 transition hover:bg-emerald-500/20"
+                  >
+                    <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                    {content.pricing.whatsapp}
+                  </a>
                 </div>
               </motion.article>
             );

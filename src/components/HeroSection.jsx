@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { ArrowDown, CalendarCheck } from "lucide-react";
+import { ArrowDown, CalendarCheck, MessageCircle } from "lucide-react";
 import { motion } from "../lib/motion";
-import { gymInfo } from "../lib/site-content";
+import { gymInfo, trialWhatsappLink } from "../lib/site-content";
 
 export function HeroSection({ content, isArabic }) {
   return (
@@ -59,6 +59,15 @@ export function HeroSection({ content, isArabic }) {
             >
               <CalendarCheck className="h-4.5 w-4.5" aria-hidden="true" />
               {content.hero.primary}
+            </a>
+            <a
+              href={trialWhatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md border border-emerald-400/50 bg-emerald-500 px-7 text-sm font-semibold text-white shadow-[0_10px_28px_rgba(16,185,129,0.28)] transition hover:-translate-y-0.5 hover:bg-emerald-400 sm:min-h-[54px] sm:px-8 sm:text-base"
+            >
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              {content.hero.whatsapp}
             </a>
             <a
               href="#about"
